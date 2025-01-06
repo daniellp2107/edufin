@@ -1,8 +1,8 @@
 import { Checkbox, Col, Row } from "antd";
 import { InputText } from "../../../../../../../components/input/InputText";
 
-
-export const Formulario = ({form, formValidation,onChangeCheck, onChangeNombre, onChangeRespuesta}) => {
+export const Formulario = ({form, formValidation,onChangeCheck, onChangeNombre, onChangeRespuesta, messageError}) => {
+  console.log(formValidation);
   return (
     <>
       <Row>
@@ -11,21 +11,23 @@ export const Formulario = ({form, formValidation,onChangeCheck, onChangeNombre, 
             name="nombre"
             label="Pregunta"
             onChange={onChangeNombre}
-            value={form.nombre}
-            error={null}
+            value={form?.nombre}
+            err={ formValidation?.nombreValid && messageError}
           />
+          {messageError && <p style={{fontSize:12}}>{formValidation?.nombreValid}</p>}
         </Col>
       </Row>
-      {/* {form.respuestas.map((r, i) => {
+      {form?.respuestasFull.map((r, i) => {
         const label = `Respuesta ${i + 1}`;
         return (
           <Row key={i}>
-            <Col span={16}>
+            <Col span={16} >
               <InputText
                 label={label}
                 name="nombre"
                 value={r.nombre}
                 onChange={(e) => onChangeRespuesta(e, i)}
+                
               />
             </Col>
             <Col style={{ marginLeft: 15, marginTop: 26 }}>
@@ -40,8 +42,10 @@ export const Formulario = ({form, formValidation,onChangeCheck, onChangeNombre, 
               </Checkbox>
             </Col>
           </Row>
+          
         );
-      })} */}
+      })}
+      {messageError && <p style={{fontSize:12}}>{formValidation?.respuestasFullValid}</p>}
     </>
   );
 };

@@ -9,7 +9,14 @@ export const contenidosSlice = createSlice({
     preguntas:[],
     alumnosStats:[],
     tema:{},
-    pregunta:{}
+    pregunta:{},
+    laminaActual:0,
+    agregarLamina:{
+      file: null,
+      formData:null,
+      temaID:null,
+      posicion:null
+    }
   },
   reducers: {
     storeTemas: (state, {payload})=>{
@@ -24,10 +31,22 @@ export const contenidosSlice = createSlice({
     storePregunta:(state, {payload})=>{
       state.pregunta = payload;
     },
+    storeLaminas:(state, {payload})=>{
+      state.laminas = payload;
+    },
+    storeLaminaActual:(state, {payload})=>{
+      state.laminaActual = payload;
+    },
+    storeAgregarLamina:(state, {payload})=>{
+      state.agregarLamina = payload;
+    }
   },
 });
 
 export const {
+  storeAgregarLamina,
+  storeLaminas,
+  storeLaminaActual,
   storeTemas,
   storeTema,
   storePregunta,

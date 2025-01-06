@@ -1,8 +1,14 @@
 import { Checkbox, Col, Row } from "antd";
 import { InputText } from "../../../../../../components/input/InputText";
 
-export const Formulario = ({form, formValidation,onChangeCheck, onChangeNombre, onChangeRespuesta}) => {
-  
+export const Formulario = ({
+  form,
+  formValidation,
+  onChangeCheck,
+  onChangeNombre,
+  onChangeRespuesta,
+  messageError
+}) => {
   return (
     <>
       <Row>
@@ -12,8 +18,11 @@ export const Formulario = ({form, formValidation,onChangeCheck, onChangeNombre, 
             label="Pregunta"
             onChange={onChangeNombre}
             value={form.nombre}
-            error={null}
+            err={formValidation?.nombreValid && messageError}
           />
+          {messageError && (
+            <p style={{ fontSize: 12 }}>{formValidation?.nombreValid}</p>
+          )}
         </Col>
       </Row>
       {form.respuestas.map((r, i) => {
@@ -32,8 +41,11 @@ export const Formulario = ({form, formValidation,onChangeCheck, onChangeNombre, 
               <Checkbox
                 checked={r.esCorrecta}
                 onChange={(value) => {
-                  let target = { name: 'esCorrecta', value: value.target.checked }
-                  onChangeCheck(target, i)
+                  let target = {
+                    name: "esCorrecta",
+                    value: value.target.checked,
+                  };
+                  onChangeCheck(target, i);
                 }}
               >
                 Es correcta {i + 1}
@@ -42,6 +54,9 @@ export const Formulario = ({form, formValidation,onChangeCheck, onChangeNombre, 
           </Row>
         );
       })}
+      {messageError && (
+        <p style={{ fontSize: 12 }}>{formValidation?.respuestasValid}</p>
+      )}
     </>
   );
 };

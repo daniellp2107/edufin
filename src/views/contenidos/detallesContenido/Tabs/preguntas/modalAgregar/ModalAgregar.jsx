@@ -10,12 +10,9 @@ export const ModalAgregar = ({open, setOpen}) => {
   const [messageError, setMessageError] = useState(false);
   const handleOk =()=>{
     if (!isFormValid()) {
-      console.log('error');
-      console.log(formValidation);
       setMessageError(true);
       return;
     };
-    console.log('ok');
     setMessageError(false);
     handleSubmit();
     handleReset();

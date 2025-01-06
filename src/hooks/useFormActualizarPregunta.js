@@ -1,29 +1,25 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { formValidationsEditarPregunta } from "../utils/formValidations";
+import { startEditarPregunta } from "../store/slices/contenidos/thunks";
 
 export const useFormActualizarPregunta = (pregunta) => {
-  const data = {
-    id: pregunta.id,
-    temaID: pregunta.temaID,
-    nombre: pregunta.nombre,
-    respuestas: pregunta.respuestasFull,
-  };
+  const dispatch = useDispatch();
   const [formValidation, setFormValidation] = useState();
-  const [form, setForm] = useState(data);
+  const [form, setForm] = useState(pregunta);
 
   useEffect(() => {
-    setForm(data);
+    setForm(pregunta);
   }, [pregunta]);
 
   const onChangeRespuesta = ({ target }, index) => {
     setForm((state) => {
-      const newRespuestas = [...state.respuestas];
+      const newRespuestas = [...state.respuestasFull];
       newRespuestas[index] = {
         ...newRespuestas[index],
         [target.name]: target.value,
       };
-      return { ...state, respuestas: newRespuestas };
+      return { ...state, respuestasFull: newRespuestas };
     });
   };
 
@@ -33,19 +29,24 @@ export const useFormActualizarPregunta = (pregunta) => {
 
   const onChangeCheck = (target, index) => {
     setForm((state) => {
-      const newRespuestas = [...state.respuestas];
+      const newRespuestas = [...state.respuestasFull];
       newRespuestas[index] = {
         ...newRespuestas[index],
         [target.name]: target.value,
       };
-      return { ...state, respuestas: newRespuestas };
+      return { ...state, respuestasFull: newRespuestas };
     });
   };
 
-  const handleReset = () => setForm(data);
+  const handleReset = () => setForm(pregunta);
 
   const handleSubmit = () => {
-    console.log("Actualizando temas", { id, nombre, tiempoMaxMinutos });
+    console.log("Actualizando preguntas", form);
+    const datos = {
+      ...form,
+      respuestas:form.respuestasFull
+    };
+    dispatch(startEditarPregunta(datos));
   };
 
   return {

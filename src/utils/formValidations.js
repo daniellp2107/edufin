@@ -55,9 +55,9 @@ export const formValidationsAgregarPregunta = {
       );
 
       // Verificamos las condiciones
-      return nombresNoVacios >= 2 && hayRespuestaCorrecta;
+      return nombresNoVacios === 4 && hayRespuestaCorrecta;
     },
-    "Necesito almenos 2 respuestas y una correcta",
+    "Necesito almenos 4 respuestas y una correcta",
   ],
 };
 
@@ -70,22 +70,18 @@ export const formValidationsEditarPregunta = {
       value.length >= 5,
     "Mínimo 5 caracteres",
   ],
-  respuestas: [
+  respuestasFull: [
     (respuestas) => {
-      // Contamos cuántos nombres no están vacíos
-      const nombresNoVacios = respuestas.filter(
-        (respuesta) => respuesta.nombre !== ""
-      ).length;
+      // Contamos cuántos nombres están vacíos
+      const nombresVacios = respuestas.filter(respuesta => respuesta.nombre !== "").length;
 
       // Verificamos si al menos una respuesta es correcta
-      const hayRespuestaCorrecta = respuestas.some(
-        (respuesta) => respuesta.esCorrecta === true
-      );
+      const hayRespuestaCorrecta = respuestas.some(respuesta => respuesta.esCorrecta === true);
 
       // Verificamos las condiciones
-      return nombresNoVacios >= 2 && hayRespuestaCorrecta;
+      return nombresVacios === 4 && hayRespuestaCorrecta;
     },
-    "Necesito almenos 2 respuestas y una correcta",
+    "Necesito 4 respuestas y una correcta",
   ],
 };
 
@@ -97,3 +93,11 @@ export const formValidationsAgregarUsuario = {
   esAlumno: [value => typeof(value)==='boolean', 'Elige una opción'],
   esAdmin: [value => typeof(value)==='boolean', 'Elige una opción'],
 };
+export const formValidationsAgregarLamina = {
+  // file: [value => value !== null && value !== undefined , "Carga un archivo válido"],
+  formData: [value => value !== null && value !== undefined, "Carga un archivo válido"],
+  temaID: [value => value !== 0, 'Elige un tema'],
+  posicion: [value => typeof(value)==='number' && value >=0 , 'Elige una posicíon para la lamina'],
+};
+
+

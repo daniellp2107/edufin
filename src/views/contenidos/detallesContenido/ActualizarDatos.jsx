@@ -32,7 +32,6 @@ export const ActualizarDatos = () => {
   };
 
   const handleEliminarTema = () => {
-    console.log(id);
     dispatch(startEliminarTema(id));
   };
 

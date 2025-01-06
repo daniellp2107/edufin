@@ -2,7 +2,8 @@ import { Tabs } from "antd";
 import { Preguntas } from "./Tabs/preguntas/Preguntas";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { startCargarPreguntas } from "../../../store/slices/contenidos/thunks";
+import { startCargarLaminas, startCargarPreguntas } from "../../../store/slices/contenidos/thunks";
+import { Laminas } from "./Tabs/laminas/Laminas";
 
 
 export const SeccionTabs = () => {
@@ -11,11 +12,12 @@ export const SeccionTabs = () => {
 
   useEffect(() => {
     dispatch(startCargarPreguntas(tema.id));
+    dispatch(startCargarLaminas(tema.id));
   }, []);
   
 
   const onChange = (key) => {
-    console.log(key);
+    
   };
   const items = [
     {
@@ -26,7 +28,7 @@ export const SeccionTabs = () => {
     {
       key: '2',
       label: 'Láminas',
-      children: 'Content of Tab Pane 2',
+      children: <Laminas />,
     }
   ];
   return <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
