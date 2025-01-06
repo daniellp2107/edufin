@@ -100,3 +100,38 @@ body {
 .botonCard:hover {
   color: rgb(253, 191, 191);
 }
+
+/* Slider */
+.slider-container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.image-container img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.slider {
+  margin-top: 20px;
+}
+
+input[type='range'] {
+  width: 80%;
+}
+
+span {
+  margin-left: 10px;
+}

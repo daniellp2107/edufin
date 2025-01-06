@@ -143,17 +143,17 @@ export const startSetLaminaActual =(numLamina)=>{
   return async dispatch =>{
     try {
       dispatch(storeLaminaActual(numLamina));
-      console.log('lamina actual: ', numLamina);
     } catch (error) {
       console.log(error);
     };
   };
 };
 
-export const startAgregarLamina =(file)=>{
+export const startAgregarLamina =(data)=>{
   return async dispatch =>{
     try {
-      dispatch(storeAgregarLamina(file));
+      const {formData, posicion, temaID} = data;
+      dispatch(storeAgregarLamina({formData, posicion, temaID}));
     } catch (error) {
       console.log(error);
     };

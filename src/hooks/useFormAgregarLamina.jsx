@@ -3,11 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { startAgregarLamina, startPostAgregarLamina } from "../store/slices/contenidos/thunks";
 import { formValidationsAgregarLamina } from "../utils/formValidations";
 
-export const useFormAgregarLamina = (lamina) => {
+export const useFormAgregarLamina = (lamina, laminaActual) => {
   const dispatch = useDispatch();
   
   const { agregarLamina } = useSelector((state) => state.contenidosReducer);
-  const [form, setForm] = useState(lamina);
+  const [form, setForm] = useState({
+    file:lamina.file,
+    formData:lamina.formData,
+    temaID:lamina.temaID,
+    posicion:laminaActual
+  });
   const [formValidation, setFormValidation] = useState({});
 
   useEffect(() => {
@@ -28,12 +33,12 @@ export const useFormAgregarLamina = (lamina) => {
   };
 
   const handleReset = () => {
-    dispatch(startAgregarLamina({
-      file:null,
-      formData:null,
-      temaID:null,
-      posicion:null,
-    }));
+    setForm({
+      file:lamina.file,
+      formData:lamina.formData,
+      temaID:lamina.temaID,
+      posicion:laminaActual
+    });
   };
 
 

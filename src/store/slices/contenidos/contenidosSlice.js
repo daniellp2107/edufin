@@ -12,7 +12,6 @@ export const contenidosSlice = createSlice({
     pregunta:{},
     laminaActual:0,
     agregarLamina:{
-      file: null,
       formData:null,
       temaID:null,
       posicion:null

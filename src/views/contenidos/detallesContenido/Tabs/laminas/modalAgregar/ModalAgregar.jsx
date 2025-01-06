@@ -1,31 +1,42 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "antd";
 import { Formulario } from "./Formulario";
-import { useFormAgregarLamina } from "../../../../../../hooks/useFormAgregarLamina";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { startAgregarLamina, startPostAgregarLamina } from "../../../../../../store/slices/contenidos/thunks";
 
 export const ModalAgregar = ({ open, setOpen }) => {
+  const dispatch = useDispatch();
   const [messageError, setMessageError] = useState(false);
-  const { laminaActual, agregarLamina } = useSelector((state) => state.contenidosReducer);
-  const {form, formValidation, onChangeId, onChangeVal, handleSubmit, handleReset, isFormValid} = useFormAgregarLamina(agregarLamina);
+  const { laminaActual, agregarLamina, tema } = useSelector((state) => state.contenidosReducer);
+
+
+  const [form, setForm] = useState({
+    file:null,
+    formData:null,
+    posicion:laminaActual,
+    temaID:tema.id,
+  });
+
+  useEffect(() => {
+    
+  }, [laminaActual])
+  
+
+  const onChangeVal = ({ name, value }) => {
+    setForm({ ...form, [name]: value });
+  };
+
   const handleCancel = () => {
-    handleReset();
-    setMessageError(false);
+
     setOpen(false);
   };
 
   const handleOk = () => {
-    if (!isFormValid()) {
-      setMessageError(true);
-      console.log(formValidation);
-      return;
-    }
-    handleSubmit();
-    handleReset();
-    setMessageError(false);
+    console.log(agregarLamina);
+    const {formData} = agregarLamina;
+    dispatch(startPostAgregarLamina(formData));
     setOpen(false);
   };
-
   return (
     <Modal
       open={open}
@@ -37,10 +48,11 @@ export const ModalAgregar = ({ open, setOpen }) => {
     >
       <Formulario
         form={form}
-        onChangeId={onChangeId}
+        setForm={setForm}
         onChangeVal={onChangeVal}
-        formValidations={formValidation}
         messageError={messageError}
+        laminaActual={laminaActual}
+        tema={tema}
       />
     </Modal>
   );
