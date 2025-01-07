@@ -8,7 +8,8 @@ import { startSetLaminaActual } from '../../../../../../store/slices/contenidos/
 export const MostrarLaminas = () => {
   const dispatch = useDispatch();
   const [load, setLoad] = useState(true);
-  const { laminas, laminaActual } = useSelector(state => state.contenidosReducer);
+  const [laminaActual, setLaminaActual] = useState(0)
+  const { laminas } = useSelector(state => state.contenidosReducer);
 
   const images = laminas?.map(i => {
     return `${URL_BASE}/api/laminas/getImage/${i.temaID}/${i.url}`
@@ -19,7 +20,8 @@ export const MostrarLaminas = () => {
     let newLamina = laminaActual + direccion;
     if (newLamina === laminas.length) newLamina = 0;
     if (newLamina === -1) newLamina = laminas.length - 1;
-    dispatch(startSetLaminaActual(newLamina));
+    dispatch(startSetLaminaActual(laminas[newLamina]));
+    setLaminaActual(newLamina);
   };
 
   if (laminas.length === 0) return <p>Sin laminas para mostrar</p>

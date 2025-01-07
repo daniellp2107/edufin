@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { fetch } from "../../../api/api";
 import { URL_BASE } from "../../../const/url";
-import { storeAgregarLamina, storeLaminaActual, storeLaminas, storePregunta, storePreguntas, storeTema, storeTemas } from "./contenidosSlice";
+import { storeAgregarLamina, storeLamina, storeLaminaActual, storeLaminas, storePregunta, storePreguntas, storeTema, storeTemas } from "./contenidosSlice";
 
 
 export const startLoadTemas = ()=>{
@@ -139,10 +139,11 @@ export const startCargarLaminas =(id)=>{
   };
 };
 
-export const startSetLaminaActual =(numLamina)=>{
+export const startSetLaminaActual =(lamina)=>{
   return async dispatch =>{
     try {
-      dispatch(storeLaminaActual(numLamina));
+      console.log(lamina);
+      dispatch(storeLamina(lamina));
     } catch (error) {
       console.log(error);
     };

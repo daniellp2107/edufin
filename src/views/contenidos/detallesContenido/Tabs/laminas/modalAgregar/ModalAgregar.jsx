@@ -7,23 +7,28 @@ import { startAgregarLamina, startPostAgregarLamina } from "../../../../../../st
 export const ModalAgregar = ({ open, setOpen }) => {
   const dispatch = useDispatch();
   const [messageError, setMessageError] = useState(false);
-  const { laminaActual, agregarLamina, tema } = useSelector((state) => state.contenidosReducer);
+  const { tema, lamina } = useSelector((state) => state.contenidosReducer);
 
 
   const [form, setForm] = useState({
     file:null,
     formData:null,
-    posicion:laminaActual,
+    posicion:lamina.posicion,
     temaID:tema.id,
-  });
+  });  
 
   useEffect(() => {
-    
-  }, [laminaActual])
+    setForm(form);
+  }, [form])
   
 
   const onChangeVal = ({ name, value }) => {
     setForm({ ...form, [name]: value });
+  };
+
+  const onChangeFormData = (file) => {
+    console.log(pos, file);
+    setForm({ ...form, ['file']: file} );
   };
 
   const handleCancel = () => {
@@ -32,9 +37,8 @@ export const ModalAgregar = ({ open, setOpen }) => {
   };
 
   const handleOk = () => {
-    console.log(agregarLamina);
-    const {formData} = agregarLamina;
-    dispatch(startPostAgregarLamina(formData));
+    console.log(form);
+    // dispatch(startPostAgregarLamina(formData));
     setOpen(false);
   };
   return (
@@ -51,7 +55,7 @@ export const ModalAgregar = ({ open, setOpen }) => {
         setForm={setForm}
         onChangeVal={onChangeVal}
         messageError={messageError}
-        laminaActual={laminaActual}
+        onChangeFormData ={onChangeFormData}
         tema={tema}
       />
     </Modal>

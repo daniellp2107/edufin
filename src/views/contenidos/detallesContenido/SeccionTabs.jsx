@@ -8,11 +8,11 @@ import { Laminas } from "./Tabs/laminas/Laminas";
 
 export const SeccionTabs = () => {
   const dispatch = useDispatch();
-  // const {tema} = useSelector(state => state.contenidosReducer);
+  const {tema} = useSelector(state => state.contenidosReducer);
 
   useEffect(() => {
-    // dispatch(startCargarPreguntas(tema.id));
-    // dispatch(startCargarLaminas(tema.id));
+    dispatch(startCargarPreguntas(tema.id));
+    dispatch(startCargarLaminas(tema.id));
   }, []);
   
 
