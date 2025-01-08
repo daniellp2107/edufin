@@ -3,9 +3,7 @@ import CardPage from '../../layout/CardPage'
 import {ListadoTemas} from './temas/ListadoTemas';
 import { ContenidoHeader } from './contenidoHeader/ContenidoHeader';
 
-export const Conntenidos = () => {
-  console.log('contenidos');
-  
+export const Conntenidos = () => {  
   return (
     <>
       <CardPage titulo="Contenidos" >

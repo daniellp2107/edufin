@@ -8,6 +8,7 @@ import { Dashboard } from "../views/dashboard/Dashboard";
 import { Conntenidos } from "../views/contenidos/Conntenidos";
 import { Usuarios } from "../views/usuarios/Usuarios";
 import { DetallesContenido } from "../views/contenidos/detallesContenido/DetallesContenido";
+import { DetalleUsuario } from "../views/usuarios/detalleUsuario/DetalleUsuario";
 
 export const ProtectedRoutes = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export const ProtectedRoutes = () => {
         <Route path="/contenidos" element={<Conntenidos />} />
         <Route path="/contenidos/detalles/:id" element={<DetallesContenido />} />
         <Route path="/usuarios" element={<Usuarios />} />
+        <Route path="/usuarios/:id" element={<DetalleUsuario />} />
         <Route path="/" element={<Dashboard/>} />
         
       </Routes>

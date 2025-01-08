@@ -20,7 +20,7 @@ export const MostrarLaminas = () => {
     let newLamina = laminaActual + direccion;
     if (newLamina === laminas.length) newLamina = 0;
     if (newLamina === -1) newLamina = laminas.length - 1;
-    dispatch(startSetLaminaActual(laminas[newLamina]));
+    dispatch(startSetLaminaActual(newLamina));
     setLaminaActual(newLamina);
   };
 

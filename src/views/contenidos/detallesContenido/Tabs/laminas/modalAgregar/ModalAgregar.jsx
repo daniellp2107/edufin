@@ -7,19 +7,17 @@ import { startAgregarLamina, startPostAgregarLamina } from "../../../../../../st
 export const ModalAgregar = ({ open, setOpen }) => {
   const dispatch = useDispatch();
   const [messageError, setMessageError] = useState(false);
-  const { tema, lamina } = useSelector((state) => state.contenidosReducer);
-
-
+  const { lamina } = useSelector((state) => state.contenidosReducer);
   const [form, setForm] = useState({
     file:null,
     formData:null,
     posicion:lamina.posicion,
-    temaID:tema.id,
+    temaID:lamina.temaID,
   });  
 
   useEffect(() => {
     setForm(form);
-  }, [form])
+  }, [form, lamina]);
   
 
   const onChangeVal = ({ name, value }) => {
@@ -41,6 +39,8 @@ export const ModalAgregar = ({ open, setOpen }) => {
     // dispatch(startPostAgregarLamina(formData));
     setOpen(false);
   };
+
+  console.log(form);
   return (
     <Modal
       open={open}
@@ -56,7 +56,6 @@ export const ModalAgregar = ({ open, setOpen }) => {
         onChangeVal={onChangeVal}
         messageError={messageError}
         onChangeFormData ={onChangeFormData}
-        tema={tema}
       />
     </Modal>
   );

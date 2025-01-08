@@ -1,69 +1,109 @@
-import { Button, Col, Row } from "antd";
-import dayjs from "dayjs";
+import { Button, Checkbox, Col, Row } from "antd";
 import { InputText } from "../../../../components/input/InputText";
 import { InputDatePicker } from "../../../../components/input/InputDatePicker";
 import { generatePassword } from "../../../../utils/generatePassword";
-import { useState } from "react";
+import InputPassword from "../../../../components/input/InputPassword";
 
 export const Formulario = ({
+  confirmPass,
+  confirmRol,
   form,
+  formValidation,
+  onClickGenPass,
+  onChangeDate,
   onChangeText,
   onChangeVal,
-  onChangeDate,
-  formValidation,
   messageError,
 }) => {
-  const [genPass, setGenPass] = useState('');
-  const crearPassword =()=>{
-    const pass = generatePassword();
-  }
+
   return (
     <Row gutter={[16, 8]}>
-      <Col span={20} md={24}>
+      <Col md={12} sm={24}>
         <InputText
           name={"nombre"}
           label={"Nombre"}
           value={form.nombre}
           onChange={onChangeText}
+          err={formValidation?.nombreValid && messageError}
         />
+        {messageError && <p>{formValidation.nombreValid}</p>}
       </Col>
-      <Col span={20} md={24}>
+      <Col md={12} sm={24}>
         <InputText
           name={"email"}
           label={"Correo"}
-          onChange={(value) => console.log(value)}
+          value={form.email}
+          onChange={(value) => onChangeText(value)}
+          err={formValidation?.emailValid && messageError}
         />
+        {messageError && <p>{formValidation.emailValid}</p>}
       </Col>
-      <Col span={20} md={24}>
-        <InputText
+      <Col md={12} sm={24}>
+        <InputPassword
           name={"password"}
           label={"Contraseña"}
-          onChange={(value) => console.log(value)}
+          value={form.password}
+          onChange={(value) => onChangeText(value)}
+          err={formValidation?.passwordValid && messageError}
         />
+        {messageError && <span>{formValidation.passwordValid}</span>}
+
       </Col>
-      <Col span={20} md={24}>
-        <InputText
+      <Col md={12} sm={24}>
+        <InputPassword
           name={"confirmPassword"}
           label={"Confirmar Contraseña"}
-          onChange={(value) => console.log(value)}
+          onChange={(value) => onChangeText(value)}
+          value={form.confirmPassword}
+          err={formValidation?.confirmPasswordValid && messageError}
         />
+        {messageError && <span>{formValidation.confirmPasswordValid}</span>}
+        {confirmPass && <span >{confirmPass}</span>}
       </Col>
-      <Col span={20} md={24}>
+      <Col md={12} sm={24}>
         <InputDatePicker
           label={"Inicio de labores"}
-          name={"fechaInicioLaboral"}
+          name={"fechaLimite"}
           onChange={(value, value2) => {
-            let target = { name: "fechaInicioLaboral", value: value2 };
+            let target = { name: "fechaLimite", value: value2 };
             onChangeDate(target);
           }}
-          value={dayjs(form.fechaInicioLaboral)}
-          err={formValidation?.fechaInicioLaboralValid && messageError}
+          err={formValidation?.fechaLimiteValid && messageError}
         />
+        {messageError && <p>{formValidation.fechaLimiteValid}</p>}
+        
       </Col>
       <Col>
-        <Button style={{ marginTop: 22 }} onClick={generatePassword}>
+        <Button style={{ marginTop: 22 }} onClick={() => onClickGenPass()}>
           generar password
         </Button>
+      </Col>
+      <Col >
+        <Checkbox
+          name="esAdmin"
+          checked={form.esAdmin}
+          label='Admin'
+          onChange={(e) => {
+            const target = { name: 'esAdmin', value: e.target.checked }
+            onChangeVal(target);
+          }}
+        >
+          Admin
+        </Checkbox>
+        {confirmRol && <p>{confirmRol}</p>}
+      </Col >
+      <Col >
+        <Checkbox
+          name="esAlumno"
+          checked={form.esAlumno}
+          label='Alumno'
+          onChange={(e) => {
+            const target = { name: 'esAlumno', value: e.target.checked }
+            onChangeVal(target);
+          }}
+        >
+          Alumno
+        </Checkbox>
       </Col>
     </Row>
   );

@@ -86,12 +86,15 @@ export const formValidationsEditarPregunta = {
 };
 
 export const formValidationsAgregarUsuario = {
-  nombre: [(value) => [value.length > 3, "Mínimo 3 caracteres"]],
+  nombre: [(value) => value.length > 3, "Mínimo 3 caracteres"],
   email: [value => esEmailValido(value), 'Este campo es necesario'],
-  password: [value => value.trim().length > 5, 'Mínimo 5 caracteres'],
-  fechaLimite: [value => dayjs(value).isValid(), 'Necesito una fecha valida'],
+  password: [value => value.trim().length > 5 && value.trim() !== '', 'Mínimo 5 caracteres'],
+  confirmPassword: [value => value.trim().length > 5 && value.trim() !== '', 'Verifica tu contraseña'],
+  fechaLimite: [value => (dayjs(value).format('DD/MM/YYYY') > dayjs().format('DD/MM/YYYY')) && dayjs(value).isValid() && (dayjs(value).format('DD/MM/YYYY') !== dayjs().format('DD/MM/YYYY')), 'Necesito una fecha valida'],
   esAlumno: [value => typeof(value)==='boolean', 'Elige una opción'],
   esAdmin: [value => typeof(value)==='boolean', 'Elige una opción'],
+  // tipoUsuario: [value => value?.length > 0, 'Elige una opción'],
+  // passConfirm: [value => value?.password !== value?.confirmPassword, 'Las contraseñas no son iguales'],
 };
 export const formValidationsAgregarLamina = {
   // file: [value => value !== null && value !== undefined , "Carga un archivo válido"],

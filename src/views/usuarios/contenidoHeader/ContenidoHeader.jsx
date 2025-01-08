@@ -13,7 +13,7 @@ export const ContenidoHeader = () => {
         type="primary"
         onClick={() => setOpen(true)}
       >
-        Nuevo Tema
+        Nuevo Usuario
         <PlusCircleOutlined />
       </Button>
       <ModalCrear open={open} setOpen={setOpen} />

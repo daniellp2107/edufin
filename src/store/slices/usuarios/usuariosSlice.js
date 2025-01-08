@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const contenidosSlice = createSlice({
-  name: "contenidos",
+export const usuariosSlice = createSlice({
+  name: "usuarios",
   initialState: {
     usuarios:[],
   },
@@ -15,4 +15,4 @@ export const contenidosSlice = createSlice({
 
 export const {
   storeUsuarios,
-} = contenidosSlice.actions;
+} = usuariosSlice.actions;

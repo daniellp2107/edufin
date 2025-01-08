@@ -139,11 +139,10 @@ export const startCargarLaminas =(id)=>{
   };
 };
 
-export const startSetLaminaActual =(lamina)=>{
+export const startSetLaminaActual =(numLamina)=>{
   return async dispatch =>{
     try {
-      console.log(lamina);
-      dispatch(storeLamina(lamina));
+      dispatch(storeLaminaActual(numLamina));
     } catch (error) {
       console.log(error);
     };
