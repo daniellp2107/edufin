@@ -47,8 +47,8 @@ export const ControlesLamina = () => {
           </Col>
         )}
       </Row>
-      <ModalAgregar open={openAgregar} setOpen={setOpenAgregar} />
-      <ModalEditar open={openEditar} setOpen={setOpenEditar}/>
+      <ModalAgregar open={openAgregar} setOpen={setOpenAgregar} laminaActual={laminaActual} />
+      <ModalEditar open={openEditar} setOpen={setOpenEditar} laminaActual={laminaActual}/>
     </>
   )
 }

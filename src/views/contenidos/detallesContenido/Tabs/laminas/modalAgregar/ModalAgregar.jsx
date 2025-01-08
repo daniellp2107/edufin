@@ -1,38 +1,23 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Modal } from "antd";
 import { Formulario } from "./Formulario";
-import { useEffect, useState } from "react";
-import { startAgregarLamina, startPostAgregarLamina } from "../../../../../../store/slices/contenidos/thunks";
+import { useFormAgregarLamina } from "../../../../../../hooks/useFormAgregarLamina";
 
-export const ModalAgregar = ({ open, setOpen }) => {
-  const dispatch = useDispatch();
+export const ModalAgregar = ({ open, setOpen, laminaActual }) => {
+  const {id} = useParams();
   const [messageError, setMessageError] = useState(false);
-  const { lamina } = useSelector((state) => state.contenidosReducer);
-  const [form, setForm] = useState({
-    file:null,
-    formData:null,
-    posicion:lamina.posicion,
-    temaID:lamina.temaID,
-  });  
-
-  useEffect(() => {
-    setForm(form);
-  }, [form, lamina]);
+  const {form, setForm, onChangeVal, onChangeFormData, handleSubmit, handleReset} = useFormAgregarLamina();
   
-
-  const onChangeVal = ({ name, value }) => {
-    setForm({ ...form, [name]: value });
-  };
-
-  const onChangeFormData = (file) => {
-    console.log(pos, file);
-    setForm({ ...form, ['file']: file} );
-  };
-
+    useEffect(() => {
+      setForm({...form, posicion:laminaActual, temaID:id});
+    }, [laminaActual]);
+  
   const handleCancel = () => {
 
     setOpen(false);
   };
+  
 
   const handleOk = () => {
     console.log(form);
@@ -40,7 +25,6 @@ export const ModalAgregar = ({ open, setOpen }) => {
     setOpen(false);
   };
 
-  console.log(form);
   return (
     <Modal
       open={open}
@@ -54,8 +38,8 @@ export const ModalAgregar = ({ open, setOpen }) => {
         form={form}
         setForm={setForm}
         onChangeVal={onChangeVal}
-        messageError={messageError}
         onChangeFormData ={onChangeFormData}
+        messageError={messageError}
       />
     </Modal>
   );

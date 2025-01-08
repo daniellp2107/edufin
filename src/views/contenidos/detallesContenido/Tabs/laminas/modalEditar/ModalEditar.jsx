@@ -1,44 +1,40 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Modal } from "antd";
 import { Formulario } from "./Formulario";
-import { useFormAgregarLamina } from "../../../../../../hooks/useFormAgregarLamina";
+import { useFormActualizarLamina  } from "../../../../../../hooks/useFormActualizarLamina";
 
 
-export const ModalEditar = ({open, setOpen}) => {
+export const ModalEditar = ({open, setOpen, laminaActual}) => {
   const [messageError, setMessageError] = useState(false);
-  const {laminaActual} = useSelector(state => state.contenidosReducer);
-  const {form, formValidation,onChangeVal, handleSubmit, handleReset, isFormValid} = useFormAgregarLamina(laminaActual);
+  const {id} = useParams();
+  const {form, setForm, onChangeVal, onChangeFormData, handleSubmit, handleReset} = useFormActualizarLamina(laminaActual, id);
+
   const handleCancel =()=>{
-    handleReset();
-    setMessageError(false);
+
     setOpen(false);
   };
 
-  const handleOk =()=>{
-    if (!isFormValid()) {
-      setMessageError(true);
-      console.log(formValidation);
-      return;
-    }
-    handleSubmit();
-    handleReset();
+  const handleOk = () => {
+    console.log(form);
+    // dispatch(startPostAgregarLamina(formData));
     setOpen(false);
   };
   
   return (
-    <Modal 
+    <Modal
       open={open}
       onCancel={handleCancel}
       onOk={handleOk}
-      title={'Agregar lamina'}
-      okText={'Guardar'}
-      cancelText={'Cerrar'}
+      title={"Agregar lamina"}
+      okText={"Guardar"}
+      cancelText={"Cerrar"}
     >
-      <Formulario 
+      <Formulario
         form={form}
+        setForm={setForm}
         onChangeVal={onChangeVal}
-        formValidations={formValidation}
+        onChangeFormData ={onChangeFormData}
         messageError={messageError}
       />
     </Modal>

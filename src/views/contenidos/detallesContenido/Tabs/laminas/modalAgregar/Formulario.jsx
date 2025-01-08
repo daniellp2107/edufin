@@ -1,13 +1,17 @@
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, message, Upload } from "antd";
 import { InputNum } from "../../../../../../components/input/InputNum";
-import { useEffect } from "react";
 
 
-export const Formulario = ({form, onChangeFormData, onChangeVal}) => {
+export const Formulario = ({form, setForm, onChangeFormData, onChangeVal}) => {
   const props = {
     beforeUpload: (file) => {
-      onChangeFormData(file);
+      const formData = new FormData();
+      formData.append("temaID", tema.id);
+      formData.append("file", file);
+      formData.append("posicion", form.posicion);
+      onChangeFormData(file, formData);
+      setForm({...form, ['formData']:formData}, file)
       return false;
     },
   };
@@ -23,7 +27,7 @@ export const Formulario = ({form, onChangeFormData, onChangeVal}) => {
         value={form.posicion}
         onChange={(e) => {
           const target = { name: "posicion", value: e };
-          onChangeVal(target,);
+          onChangeVal(target);
         }}
       />
     </>

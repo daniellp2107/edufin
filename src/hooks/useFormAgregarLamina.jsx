@@ -3,41 +3,40 @@ import { useDispatch, useSelector } from "react-redux";
 import { startAgregarLamina, startPostAgregarLamina } from "../store/slices/contenidos/thunks";
 import { formValidationsAgregarLamina } from "../utils/formValidations";
 
-export const useFormAgregarLamina = (lamina, laminaActual) => {
+export const useFormAgregarLamina = () => {
   const dispatch = useDispatch();
-  
-  const { agregarLamina } = useSelector((state) => state.contenidosReducer);
-  const [form, setForm] = useState({
-    file:lamina.file,
-    formData:lamina.formData,
-    temaID:lamina.temaID,
-    posicion:laminaActual
-  });
   const [formValidation, setFormValidation] = useState({});
+  const [form, setForm] = useState({
+    file:null,
+    formData:null,
+    posicion:null,
+    temaID:null,
+  }); 
 
   useEffect(() => {
     checkForm();
-  }, [form, lamina]);
+  }, [form]);
 
   const onChangeVal = ({ name, value }) => {
     setForm({ ...form, [name]: value });
   };
 
   const handleSubmit = () => {
-    const {file, formData, temaID, posicion} = agregarLamina;
-    dispatch(startPostAgregarLamina({file, formData, temaID, posicion}));
+    // const {file, formData, temaID, posicion} = agregarLamina;
+    // dispatch(startPostAgregarLamina({file, formData, temaID, posicion}));
   };
 
-  const onChangeId =(id)=>{
-    setForm({...form, ['temaID']:id});
+  const onChangeFormData = (file, formData) => {
+    console.log(pos, file);
+    setForm({ ...form, ['file']: file, ['formData']:formData});
   };
 
   const handleReset = () => {
     setForm({
-      file:lamina.file,
-      formData:lamina.formData,
-      temaID:lamina.temaID,
-      posicion:laminaActual
+    file:null,
+    formData:null,
+    posicion:null,
+    temaID:null,
     });
   };
 
@@ -67,8 +66,8 @@ export const useFormAgregarLamina = (lamina, laminaActual) => {
     isFormValid,
     handleReset,
     handleSubmit,
-    onChangeId,
     onChangeVal,
+    onChangeFormData,
     setForm,
   };
 };

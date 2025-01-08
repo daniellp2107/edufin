@@ -6,7 +6,7 @@ import { startCargarLaminas, startSetLaminaActual } from '../../../../../store/s
 
 export const Laminas = () => {
   const dispatch = useDispatch();
-  const {laminas, tema} = useSelector(state => state.contenidosReducer);
+  const {tema} = useSelector(state => state.contenidosReducer);
   useEffect(() => {
     dispatch(startCargarLaminas(tema.id));   
   }, [tema]);

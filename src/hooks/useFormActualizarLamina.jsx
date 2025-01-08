@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { startAgregarLamina, startPostAgregarLamina } from "../store/slices/contenidos/thunks";
-import { formValidationsAgregarLamina } from "../utils/formValidations";
 
-export const useFormActualizarLamina = (lamina) => {
+export const useFormActualizarLamina = (posicion, temaID) => {
   const dispatch = useDispatch();
-  const [form, setForm] = useState({ posicion: lamina });
-  const { agregarLamina } = useSelector((state) => state.contenidosReducer);
+  const [form, setForm] = useState({ posicion: posicion });
 
   useEffect(() => {
-    setForm({posicion:lamina});
+    setForm({posicion:posicion});
   }, [form]);
 
   const onChangeVal = ({ name, value }) => {
