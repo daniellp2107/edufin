@@ -1,9 +1,9 @@
 import { UploadOutlined } from "@ant-design/icons";
-import { Button, message, Upload } from "antd";
+import { Alert, Button, message, Upload } from "antd";
 import { InputNum } from "../../../../../../components/input/InputNum";
 
 
-export const Formulario = ({form, setForm, onChangeFormData, onChangeVal}) => {
+export const Formulario = ({form, formValidation, onChangeFormData, onChangeVal, messageError}) => {
   const props = {
     beforeUpload: (file) => {
       const formData = new FormData();
@@ -11,7 +11,6 @@ export const Formulario = ({form, setForm, onChangeFormData, onChangeVal}) => {
       formData.append("file", file);
       formData.append("posicion", form.posicion);
       onChangeFormData(file, formData);
-      setForm({...form, ['formData']:formData}, file)
       return false;
     },
   };
@@ -30,6 +29,7 @@ export const Formulario = ({form, setForm, onChangeFormData, onChangeVal}) => {
           onChangeVal(target);
         }}
       />
+      
     </>
   );
 };

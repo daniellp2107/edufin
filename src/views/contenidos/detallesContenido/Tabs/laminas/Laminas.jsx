@@ -9,6 +9,7 @@ export const Laminas = () => {
   const {tema} = useSelector(state => state.contenidosReducer);
   useEffect(() => {
     dispatch(startCargarLaminas(tema.id));   
+    dispatch(startSetLaminaActual(0));
   }, [tema]);
   
 

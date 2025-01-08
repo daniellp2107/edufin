@@ -7,7 +7,7 @@ export const ControlesPregunta = () => {
 
   return (
     <>
-      <Button onClick={()=>setOpen(!open)}>
+      <Button type='primary' onClick={()=>setOpen(!open)}>
         Agregar Pregunta
       </Button>
       <ModalAgregar open={open} setOpen={setOpen}/>

@@ -4,37 +4,46 @@ import { Modal } from "antd";
 import { Formulario } from "./Formulario";
 import { useFormActualizarLamina  } from "../../../../../../hooks/useFormActualizarLamina";
 
-
 export const ModalEditar = ({open, setOpen, laminaActual}) => {
-  const [messageError, setMessageError] = useState(false);
   const {id} = useParams();
-  const {form, setForm, onChangeVal, onChangeFormData, handleSubmit, handleReset} = useFormActualizarLamina(laminaActual, id);
+  const [messageError, setMessageError] = useState(false);
+  const { form, setForm, formValidation, isFormValid, onChangeVal, onChangeFormData, handleSubmit, handleReset } = useFormActualizarLamina();
 
-  const handleCancel =()=>{
+  useEffect(() => {
+    setForm({...form, posicion:laminaActual, temaID:id});
+  }, [laminaActual]);
+
+  const handleCancel = () => {
 
     setOpen(false);
   };
 
   const handleOk = () => {
-    console.log(form);
-    // dispatch(startPostAgregarLamina(formData));
+    if (!isFormValid()) {
+      setMessageError(true);
+      return;
+    }
+
+    handleSubmit()
+    setMessageError(false);
     setOpen(false);
   };
-  
+
   return (
     <Modal
       open={open}
       onCancel={handleCancel}
       onOk={handleOk}
-      title={"Agregar lamina"}
+      title={"Editar lámina"}
       okText={"Guardar"}
       cancelText={"Cerrar"}
     >
       <Formulario
         form={form}
+        formValidation={formValidation}
         setForm={setForm}
         onChangeVal={onChangeVal}
-        onChangeFormData ={onChangeFormData}
+        onChangeFormData={onChangeFormData}
         messageError={messageError}
       />
     </Modal>

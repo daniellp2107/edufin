@@ -1,5 +1,6 @@
 import { EyeOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
+import dayjs from 'dayjs'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -29,6 +30,9 @@ export const useColumns = () => {
       key: "fechaLimite",
       width: "10%",
       align: "center",
+      render:(text, record, index)=>(
+        <span > {dayjs(record.fechaLimite).format('DD/MM/YYYY')} </span>
+      )
     },
     {
       title: "Ultimo Acceso",
@@ -36,6 +40,9 @@ export const useColumns = () => {
       key: "ultimoLogin",
       width: "10%",
       align: "center",
+      render:(text, record, index)=>(
+        <span > {dayjs(record.ultimoLogin).format('DD/MM/YYYY')} </span>
+      )
     },
     {
       title: "Rol",

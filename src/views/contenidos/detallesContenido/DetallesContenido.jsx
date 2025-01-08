@@ -5,7 +5,7 @@ import { SeccionTabs } from './SeccionTabs'
 
 export const DetallesContenido = () => {
   return (
-    <CardPage titulo={'Detalle del tema'}>
+    <CardPage titulo={'Detalle del Contenido'}>
       <ActualizarDatos />
       <SeccionTabs />
     </CardPage>

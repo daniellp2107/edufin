@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startAgregarLamina, startPostAgregarLamina } from "../store/slices/contenidos/thunks";
 import { formValidationsAgregarLamina } from "../utils/formValidations";
+import { creaNotificacion } from "../utils/creaNotificacion";
+import { setNotificacion } from "../store/slices/notificacion/notificacionSlice";
 
 export const useFormAgregarLamina = () => {
   const dispatch = useDispatch();
@@ -22,8 +24,8 @@ export const useFormAgregarLamina = () => {
   };
 
   const handleSubmit = () => {
-    // const {file, formData, temaID, posicion} = agregarLamina;
-    // dispatch(startPostAgregarLamina({file, formData, temaID, posicion}));
+    dispatch(startPostAgregarLamina({file, formData, temaID, posicion}));
+    
   };
 
   const onChangeFormData = (file, formData) => {
@@ -55,7 +57,10 @@ export const useFormAgregarLamina = () => {
   };
   const isFormValid = () => {
     for (const formValue of Object.keys(formValidation)) {
-      if (formValidation[formValue] !== null) return false;
+      if (formValidation[formValue] !== null) {
+        dispatch(setNotificacion(creaNotificacion('error', formValidation[formValue])));
+        return false;
+      };
     }
     return true;
   };

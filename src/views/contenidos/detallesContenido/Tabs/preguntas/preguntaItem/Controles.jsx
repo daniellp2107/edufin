@@ -19,7 +19,7 @@ export const Controles = ({
 
   return (
     <>
-      <Button onClick={() => onClickEditar()}>Editar</Button>
+      <Button type="primary" onClick={() => onClickEditar()}>Editar</Button>
       <Popconfirm
         title="Eliminar pregunta"
         description="¿Estas seguro que quieres eliminar está pregunta?"

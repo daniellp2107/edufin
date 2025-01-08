@@ -97,7 +97,7 @@ export const formValidationsAgregarUsuario = {
   // passConfirm: [value => value?.password !== value?.confirmPassword, 'Las contraseñas no son iguales'],
 };
 export const formValidationsAgregarLamina = {
-  // file: [value => value !== null && value !== undefined , "Carga un archivo válido"],
+  file: [value => value !== null && value !== undefined , "Carga un archivo válido"],
   formData: [value => value !== null && value !== undefined, "Carga un archivo válido"],
   temaID: [value => value !== 0, 'Elige un tema'],
   posicion: [value => typeof(value)==='number' && value >=0 , 'Elige una posicíon para la lamina'],

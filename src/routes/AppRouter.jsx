@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { consLogged } from "../const/consLogged";
 import { startRefreshToken } from "../store/slices/auth/thunks";
+import { Notificacion } from "../layout/Notificacion";
 
 export const AppRouter = () => {
   const { logged } = useSelector((state) => state.userReducer);
@@ -45,6 +46,7 @@ export const AppRouter = () => {
           }
         />
       </Routes>
+      <Notificacion />
     </>
   );
 };

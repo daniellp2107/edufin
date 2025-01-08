@@ -37,7 +37,7 @@ export const ActualizarDatos = () => {
 
   return (
     <Row gutter={[16, 8]}>
-      <Col  md={8} sm={24}>
+      <Col  md={8} xs={24}>
         <InputText
           name={"nombre"}
           label={"Nombre"}
@@ -49,10 +49,10 @@ export const ActualizarDatos = () => {
           <span style={{ fontSize: 12 }}> {formValidation?.nombreValid} </span>
         )}
       </Col>
-      <Col  md={4} sm={24}>
+      <Col  md={4} xs={24}>
         <InputNum
           name={"tiempoMaxMinutos"}
-          label={"Tiempo Màximo Examen"}
+          label={"T. Máximo Examen"}
           value={form.tiempoMaxMinutos}
           onChange={(value) => {
             let target = { name: "tiempoMaxMinutos", value: value };
@@ -68,12 +68,12 @@ export const ActualizarDatos = () => {
         )}
       </Col>
       <Col>
-        <Button style={{ marginTop: 19 }} onClick={handleActualizarTema}>
+        <Button type="primary" style={{ marginTop: 19 }} onClick={handleActualizarTema}>
           Actualizar Tema
         </Button>
       </Col>
       <Col>
-        <Button style={{ marginTop: 19 }} onClick={handleEliminarTema}>
+        <Button danger style={{ marginTop: 19 }} onClick={handleEliminarTema}>
           Eliminar Tema
         </Button>
       </Col>
