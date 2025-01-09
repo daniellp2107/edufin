@@ -6,11 +6,11 @@ import { InputNum } from "../../../../../../components/input/InputNum";
 export const Formulario = ({form, formValidation, onChangeFormData, onChangeVal, messageError}) => {
   const props = {
     beforeUpload: (file) => {
-      const formData = new FormData();
-      formData.append("temaID", tema.id);
-      formData.append("file", file);
-      formData.append("posicion", form.posicion);
-      onChangeFormData(file, formData);
+      // const formData = new FormData();
+      // formData.append("temaID", tema.id);
+      // formData.append("file", file);
+      // formData.append("posicion", form.posicion);
+      onChangeFormData(file);
       return false;
     },
   };

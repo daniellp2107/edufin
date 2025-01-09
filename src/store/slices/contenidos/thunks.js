@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { fetch } from "../../../api/api";
 import { URL_BASE } from "../../../const/url";
-import { storeAgregarLamina, storeLamina, storeLaminaActual, storeLaminas, storePreguntas, storeTema, storeTemas } from "./contenidosSlice";
+import { storeAgregarLamina, storeBuscarPregunta, storeLamina, storeLaminaActual, storeLaminas, storePreguntas, storeTema, storeTemas } from "./contenidosSlice";
 import { setNotificacion } from '../notificacion/notificacionSlice';
 import { creaNotificacion } from '../../../utils/creaNotificacion';
 
@@ -181,6 +181,16 @@ export const startPostAgregarLamina =(formData, id)=> {
       console.log(res);
     } catch (error) {
       console.log(object);
+    };
+  };
+};
+
+export const startBuscarPregunta = (texto)=>{
+  return async dispatch =>{
+    try {
+      dispatch(storeBuscarPregunta(texto));
+    } catch (error) {
+      console.log(error);
     };
   };
 };

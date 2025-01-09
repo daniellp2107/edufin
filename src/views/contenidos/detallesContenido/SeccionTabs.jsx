@@ -5,9 +5,6 @@ import { Laminas } from "./Tabs/laminas/Laminas";
 
 export const SeccionTabs = () => {
 
-  const onChange = (key) => {
-    
-  };
   const items = [
     {
       key: '1',
@@ -20,5 +17,5 @@ export const SeccionTabs = () => {
       children: <Laminas />,
     }
   ];
-  return <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+  return <Tabs defaultActiveKey="1" items={items}/>
 }

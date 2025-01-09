@@ -12,7 +12,8 @@ export const contenidosSlice = createSlice({
     pregunta:{},
     laminaActual:0,
     lamina:{},
-    agregarLamina:{}
+    agregarLamina:{},
+    buscarPregunta:'',
   },
   reducers: {
     storeTemas: (state, {payload})=>{
@@ -39,11 +40,15 @@ export const contenidosSlice = createSlice({
     storeLamina:(state, {payload})=>{
       state.lamina = payload;
     },
+    storeBuscarPregunta:(state, {payload})=>{
+      state.buscarPregunta = payload;
+    }
   },
 });
 
 export const {
   storeAgregarLamina,
+  storeBuscarPregunta,
   storeLamina,
   storeLaminas,
   storeLaminaActual,
