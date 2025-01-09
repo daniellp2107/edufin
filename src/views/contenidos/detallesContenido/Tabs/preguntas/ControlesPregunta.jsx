@@ -17,9 +17,9 @@ export const ControlesPregunta = () => {
     <Row gutter={[16,6]}>
       <Col xs={24} md={16} style={{marginTop:6}}>
         <InputText 
-          name={'filtrat'}
+          name={'filtrar'}
           onChange={handleChange}
-          placeholder={'Filtrar ...'}
+          placeholder={`Filtrar ...`}
         />
       
       </Col>

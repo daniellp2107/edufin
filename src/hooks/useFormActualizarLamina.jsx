@@ -5,40 +5,38 @@ import { formValidationsAgregarLamina } from "../utils/formValidations";
 import { creaNotificacion } from "../utils/creaNotificacion";
 import { setNotificacion } from "../store/slices/notificacion/notificacionSlice";
 
-export const useFormActualizarLamina = () => {
+export const useFormActualizarLamina = (temaID, posicion, laminas ) => {
   const dispatch = useDispatch();
   const [formValidation, setFormValidation] = useState({});
   const [form, setForm] = useState({
-    file: null,
-    formData: null,
-    posicion: null,
-    temaID: null,
-  });
+    file:null,
+    posicion:posicion,
+    temaID:temaID,
+    id: laminas && laminas[posicion].id,
+  }); 
 
   useEffect(() => {
     checkForm();
-  }, [form]);
+  }, [form, posicion]);
 
-  const onChangeVal = ({ name, value }) => {
-    setForm({ ...form, [name]: value });
+  const onChangeVal = ({ name, value }, temaID) => {
+    setForm({ ...form, [name]: value, ['temaID']:temaID });
   };
 
   const handleSubmit = () => {
-    dispatch(startPostAgregarLamina({ file, formData, temaID, posicion }, id));
-
+    dispatch(startPostAgregarLamina({...form}));
   };
 
-  const onChangeFormData = (file, formData) => {
-    console.log(pos, file);
-    setForm({ ...form, ['file']: file, ['formData']: formData });
+  const onChangeFormData = (file) => {
+    setForm({ ...form, ['file']: file});
   };
 
   const handleReset = () => {
     setForm({
-      file: null,
-      formData: null,
-      posicion: null,
-      temaID: null,
+      file:null,
+      posicion:posicion,
+      temaID:temaID,
+      id: laminas[posicion - 1],
     });
   };
 

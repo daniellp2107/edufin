@@ -10,9 +10,9 @@ export const useFormAgregarLamina = () => {
   const [formValidation, setFormValidation] = useState({});
   const [form, setForm] = useState({
     file:null,
-    formData:null,
     posicion:null,
     temaID:null,
+    id:null,
   }); 
 
   useEffect(() => {
@@ -24,21 +24,19 @@ export const useFormAgregarLamina = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(startPostAgregarLamina({file, formData, temaID, posicion}));
-    
+    dispatch(startPostAgregarLamina({...form}));
   };
 
-  const onChangeFormData = (file, formData) => {
-    console.log(pos, file);
-    setForm({ ...form, ['file']: file, ['formData']:formData});
+  const onChangeFormData = (file) => {
+    setForm({ ...form, ['file']: file});
   };
 
   const handleReset = () => {
     setForm({
     file:null,
-    formData:null,
     posicion:null,
     temaID:null,
+    id:null,
     });
   };
 

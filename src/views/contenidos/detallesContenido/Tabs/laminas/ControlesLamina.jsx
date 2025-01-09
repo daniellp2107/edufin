@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button, Col, Popconfirm, Row, message } from "antd";
 import { ModalAgregar } from "./modalAgregar/ModalAgregar";
 import { ModalEditar } from "./modalEditar/ModalEditar";
@@ -8,13 +8,13 @@ import { ModalEditar } from "./modalEditar/ModalEditar";
 export const ControlesLamina = () => {
   const [openAgregar, setOpenAgregar] = useState(false);
   const [openEditar, setOpenEditar] = useState(false);
-  const { laminas, laminaActual } = useSelector(state => state.contenidosReducer);
-  
+  const { laminas, laminaActual, lamina } = useSelector(state => state.contenidosReducer);
+
   const handleAgregar = () => {
     console.log('agregar');
     setOpenAgregar(true);
   };
-  
+
   const handleEdit = () => {
     console.log('editar');
     setOpenEditar(true);
@@ -58,8 +58,8 @@ export const ControlesLamina = () => {
           </Popconfirm>
         )}
       </Row>
-      <ModalAgregar open={openAgregar} setOpen={setOpenAgregar} laminaActual={laminaActual} />
-      <ModalEditar open={openEditar} setOpen={setOpenEditar} laminaActual={laminaActual} />
+      {openAgregar && <ModalAgregar open={openAgregar} setOpen={setOpenAgregar} laminaActual={laminaActual} />}
+      {openEditar && <ModalEditar open={openEditar} setOpen={setOpenEditar} laminaActual={laminaActual} lamina={lamina} laminas = {laminas}/>}
     </>
   )
 }

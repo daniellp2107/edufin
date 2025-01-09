@@ -10,7 +10,7 @@ export const Laminas = () => {
   useEffect(() => {
     dispatch(startCargarLaminas(tema.id));   
     dispatch(startSetLaminaActual(0));
-  }, [tema]);
+  }, []);
   
 
   return (

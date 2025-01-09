@@ -2,30 +2,28 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Modal } from "antd";
 import { Formulario } from "./Formulario";
-import { useFormActualizarLamina  } from "../../../../../../hooks/useFormActualizarLamina";
+import { useFormActualizarLamina } from "../../../../../../hooks/useFormActualizarLamina";
 
-export const ModalEditar = ({open, setOpen, laminaActual}) => {
-  const {id} = useParams();
+export const ModalEditar = ({ open, setOpen, laminaActual, laminas }) => {
+  const { id } = useParams();
   const [messageError, setMessageError] = useState(false);
-  const { form, setForm, formValidation, isFormValid, onChangeVal, onChangeFormData, handleSubmit, handleReset } = useFormActualizarLamina();
-
-  useEffect(() => {
-    setForm({...form, posicion:laminaActual, temaID:id});
-  }, [laminaActual]);
+  const { form, setForm, formValidation, isFormValid, onChangeVal, onChangeFormData, handleSubmit, handleReset } = useFormActualizarLamina(id, laminaActual, laminas );
 
   const handleCancel = () => {
-
+    
     setOpen(false);
   };
+
 
   const handleOk = () => {
     if (!isFormValid()) {
       setMessageError(true);
       return;
-    }
+    };
 
-    handleSubmit()
+    handleSubmit();
     setMessageError(false);
+    handleReset();
     setOpen(false);
   };
 
@@ -34,7 +32,7 @@ export const ModalEditar = ({open, setOpen, laminaActual}) => {
       open={open}
       onCancel={handleCancel}
       onOk={handleOk}
-      title={"Editar lámina"}
+      title={"Agregar lamina"}
       okText={"Guardar"}
       cancelText={"Cerrar"}
     >
@@ -45,6 +43,7 @@ export const ModalEditar = ({open, setOpen, laminaActual}) => {
         onChangeVal={onChangeVal}
         onChangeFormData={onChangeFormData}
         messageError={messageError}
+        laminaActual = {laminaActual}
       />
     </Modal>
   )

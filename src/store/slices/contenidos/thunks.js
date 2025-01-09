@@ -135,6 +135,10 @@ export const startCargarLaminas =(id)=>{
       const res = await fetch('get', `${URL_BASE}/api/laminas/${id}`);
       if (res.ok) {
         dispatch(storeLaminas(res.data));
+        if (res.data.length > 0) {
+          const currLam = res.data.find(l => l.posicion === 0);
+          dispatch(startSetLamina(currLam));
+        };
       };
     } catch (error) {
       console.log(error);
@@ -152,6 +156,16 @@ export const startSetLaminaActual =(numLamina)=>{
   };
 };
 
+export const startSetLamina =(lamina)=>{
+  return async dispatch =>{
+    try {
+      dispatch(storeLamina(lamina));
+    } catch (error) {
+      console.log(error);
+    };
+  };
+};
+
 export const startAgregarLamina =(data)=>{
   return async dispatch =>{
     try {
@@ -163,24 +177,29 @@ export const startAgregarLamina =(data)=>{
   };
 };
 
-export const startPostAgregarLamina =(formData, id)=> {
+export const startPostAgregarLamina =({file, posicion, temaID, id})=> {
   return async dispatch =>{
     try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('posicion', posicion + 1);
+      formData.append('temaID', temaID);
       const config = {
         headers: {
           "content-type": "multipart/form-data",
         },
       };
       if (id) {
-        const res = await axios.put(`${URL_BASE}/api/laminas`,{...formData, id}, config);
-        console.log(res);
-        dispatch(setNotificacion(creaNotificacion('error', 'Pendiente por actualizar')));
-      };
-      const res = await axios.post(`${URL_BASE}/api/laminas`,formData, config);
-      dispatch(setNotificacion(creaNotificacion('error', 'Pendiente por agregar')));
-      console.log(res);
+        formData.append('id', id);
+        const res = await axios.put(`${URL_BASE}/api/laminas`,formData, config);
+        dispatch(setNotificacion(creaNotificacion('success', 'actualizar')));
+      }else{
+        const res = await axios.post(`${URL_BASE}/api/laminas`,formData, config);
+        dispatch(setNotificacion(creaNotificacion('success', 'agregar')));
+      }
+      dispatch(startCargarLaminas(temaID));
     } catch (error) {
-      console.log(object);
+      console.log(error);
     };
   };
 };

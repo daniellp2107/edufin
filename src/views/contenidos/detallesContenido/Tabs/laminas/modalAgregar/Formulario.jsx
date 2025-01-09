@@ -6,10 +6,6 @@ import { InputNum } from "../../../../../../components/input/InputNum";
 export const Formulario = ({form, formValidation, onChangeFormData, onChangeVal, messageError}) => {
   const props = {
     beforeUpload: (file) => {
-      // const formData = new FormData();
-      // formData.append("temaID", tema.id);
-      // formData.append("file", file);
-      // formData.append("posicion", form.posicion);
       onChangeFormData(file);
       return false;
     },
@@ -18,7 +14,7 @@ export const Formulario = ({form, formValidation, onChangeFormData, onChangeVal,
   return (
     <>
       <Upload {...props}>
-        <Button icon={<UploadOutlined />}>Click to Upload</Button>
+        <Button icon={<UploadOutlined />}>Elige una imagen para subir</Button>
       </Upload>
       <InputNum
         label={"Posición"}
@@ -29,7 +25,6 @@ export const Formulario = ({form, formValidation, onChangeFormData, onChangeVal,
           onChangeVal(target);
         }}
       />
-      
     </>
   );
 };
