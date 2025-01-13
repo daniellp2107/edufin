@@ -1,9 +1,8 @@
-import { Button, Col, Row } from "antd";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Button, Col, Row } from "antd";
 import { InputText } from "../../../components/input/InputText";
 import { useFormActualizarTema } from "../../../hooks/useFormActualizarTema";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { InputNum } from "../../../components/input/InputNum";
 import { startEliminarTema } from "../../../store/slices/contenidos/thunks";
 

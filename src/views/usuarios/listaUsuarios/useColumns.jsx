@@ -2,12 +2,15 @@ import { EyeOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import dayjs from 'dayjs'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { startSetUsuarioActual } from '../../../store/slices/usuarios/thunks'
 
 export const useColumns = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleClick =(id)=>{
-
+    dispatch(startSetUsuarioActual(id));
     navigate(`/usuarios/${id}`);
   }
 

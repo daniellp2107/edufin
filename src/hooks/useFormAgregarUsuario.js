@@ -44,13 +44,7 @@ export const useFormAgregarUsuario = () => {
     setForm({ ...form, ['password']: genPass, ['confirmPassword']: genPass });
   };
 
-  const onChangeTipoUsuario = (tipo) => {
-
-  };
-
   const handleSubmit = () => {
-    console.log('submit');
-    console.log(form);
     dispatch(startAgregarUsuario(form));
   };
 
@@ -84,7 +78,6 @@ export const useFormAgregarUsuario = () => {
     onClickGenPass,
     onChangeDate,
     onChangeText,
-    onChangeTipoUsuario,
     onChangeVal,
     handleSubmit,
     handleReset,

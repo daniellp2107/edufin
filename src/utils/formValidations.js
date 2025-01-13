@@ -72,13 +72,8 @@ export const formValidationsEditarPregunta = {
   ],
   respuestasFull: [
     (respuestas) => {
-      // Contamos cuántos nombres están vacíos
       const nombresVacios = respuestas.filter(respuesta => respuesta.nombre !== "").length;
-
-      // Verificamos si al menos una respuesta es correcta
       const hayRespuestaCorrecta = respuestas.some(respuesta => respuesta.esCorrecta === true);
-
-      // Verificamos las condiciones
       return nombresVacios === 4 && hayRespuestaCorrecta;
     },
     "Necesito 4 respuestas y una correcta",
@@ -93,14 +88,22 @@ export const formValidationsAgregarUsuario = {
   fechaLimite: [value => (dayjs(value).format('DD/MM/YYYY') > dayjs().format('DD/MM/YYYY')) && dayjs(value).isValid() && (dayjs(value).format('DD/MM/YYYY') !== dayjs().format('DD/MM/YYYY')), 'Necesito una fecha valida'],
   esAlumno: [value => typeof(value)==='boolean', 'Elige una opción'],
   esAdmin: [value => typeof(value)==='boolean', 'Elige una opción'],
-  // tipoUsuario: [value => value?.length > 0, 'Elige una opción'],
-  // passConfirm: [value => value?.password !== value?.confirmPassword, 'Las contraseñas no son iguales'],
 };
 export const formValidationsAgregarLamina = {
   file: [value => value !== null && value !== undefined , "Carga un archivo válido"],
-  // formData: [value => value !== null && value !== undefined, "Carga un archivo válido"],
   temaID: [value => value !== 0, 'Elige un tema'],
   posicion: [value => typeof(value)==='number' && value >=0 , 'Elige una posicíon para la lamina'],
+};
+
+export const formValidationsActualizarUsuario = {
+  nombre: [(value) => value.length > 3, "Mínimo 3 caracteres"],
+  email: [value => esEmailValido(value), 'Elige un tema'],
+  fechaLimite: [value => (dayjs(value).format('DD/MM/YYYY') > dayjs().format('DD/MM/YYYY')) && dayjs(value).isValid() && (dayjs(value).format('DD/MM/YYYY') !== dayjs().format('DD/MM/YYYY')), 'Necesito una fecha valida'],
+  password: [value => value.trim().length > 5 && value.trim() !== '', 'Mínimo 5 caracteres'],
+  confirmPassword: [value => value.trim().length > 5 && value.trim() !== '', 'Verifica tu contraseña'],
+  ultimoLogin:[value => dayjs(value).isValid(), 'Necesito una fecha válida'],
+  esAlumno: [value => typeof(value)==='boolean', 'Elige una opción'],
+  esAdmin: [value => typeof(value)==='boolean', 'Elige una opción'],
 };
 
 
