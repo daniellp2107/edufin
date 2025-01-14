@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { generatePassword } from '../utils/generatePassword';
 import { useDispatch } from 'react-redux';
+import { generatePassword } from '../utils/generatePassword';
 import { startActualizarUsuario } from '../store/slices/usuarios/thunks';
 
 export const userFormActualizarUsuario = (usuario) => {

@@ -29,7 +29,6 @@ export const ModalEditar = ({ open, setOpen, pregunta }) => {
   };
 
   const handleCancel = () => {
-    console.log("cerrar editar pregunta");
     handleReset();
     setMessageError(false);
     setOpen(false);
@@ -50,7 +49,7 @@ export const ModalEditar = ({ open, setOpen, pregunta }) => {
         onChangeNombre={onChangeNombre}
         onChangeRespuesta={onChangeRespuesta}
       />
-      Modal
+      
     </Modal>
   );
 };

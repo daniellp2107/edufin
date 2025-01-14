@@ -20,7 +20,6 @@ export const ModalAgregar = ({ open, setOpen, laminaActual }) => {
 
 
   const handleOk = () => {
-    console.log(form)
     if (!isFormValid()) {
       console.log(formValidation);
       setMessageError(true);

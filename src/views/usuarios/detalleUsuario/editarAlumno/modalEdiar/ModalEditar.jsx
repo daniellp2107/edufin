@@ -1,27 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "antd";
 import { Formulario } from "./Formulario";
 import { checkForm, formValidationsActualizarUsuario, isFormValid } from "../../../../../utils/formValidations";
+import { userFormActualizarUsuario } from "../../../../../hooks/userFormActualizarUsuario";
+import { useSelector } from "react-redux";
 
-export const ModalEditar = ({ open, setOpen, formulario }) => {
+export const ModalEditar = ({ open, setOpen, usuario }) => {
+  // const {usuario} = useSelector(state => state.usuariosReducer);
   const [messageError, setMessageError] = useState(false);
   const [confirmPass, setConfirmPass] = useState(null);
   const [confirmRol, setConfirmRol] = useState(null);
   const [formValidation, setFormValidation] = useState();
   
-  const {
-    form,
-    onClickGenPass,
-    onChangeDate,
-    onChangeText,
-    onChangeVal,
-    handleSubmit,
-    handleReset} = formulario;
+  const {form, onClickGenPass, onChangeDate, onChangeText, onChangeVal, handleSubmit, handleReset} = userFormActualizarUsuario(usuario);
 
-    useEffect(() => {
-      
-    }, [form]);
+  useEffect(() => {
     
+  }, [usuario])
+  
 
   const handleOk = () => {
     const validaciones = checkForm(form, formValidationsActualizarUsuario);
@@ -32,7 +28,7 @@ export const ModalEditar = ({ open, setOpen, formulario }) => {
       console.log(formValidation);
       return;
     };
-    if ((form.password !== form.confirmPassword)) {
+    if (form.password !== form.confirmPassword) {
       setMessageError(true);
       setConfirmPass('Las contraseñas no son iguales');
       return;

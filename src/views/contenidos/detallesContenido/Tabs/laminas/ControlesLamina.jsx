@@ -11,22 +11,18 @@ export const ControlesLamina = () => {
   const { laminas, laminaActual, lamina } = useSelector(state => state.contenidosReducer);
 
   const handleAgregar = () => {
-    console.log('agregar');
     setOpenAgregar(true);
   };
 
   const handleEdit = () => {
-    console.log('editar');
     setOpenEditar(true);
   };
 
   const handleEliminarConfirmar = (e) => {
-    console.log(e);
     message.success('Pendiente por borrar');
   };
 
   const handleEliminarCancelar = (e) => {
-    console.log(e);
     message.error('Cancelado');
   };
 

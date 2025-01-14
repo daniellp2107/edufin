@@ -1,9 +1,8 @@
-import { EyeOutlined } from '@ant-design/icons'
-import { Button } from 'antd'
-import dayjs from 'dayjs'
-import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { Button } from 'antd'
+import dayjs from 'dayjs'
+import { CheckCircleOutlined, CloseCircleOutlined, EyeOutlined,  } from '@ant-design/icons'
 import { startSetUsuarioActual } from '../../../store/slices/usuarios/thunks'
 
 export const useColumns = () => {
@@ -44,17 +43,40 @@ export const useColumns = () => {
       width: "10%",
       align: "center",
       render:(text, record, index)=>(
-        <span > {dayjs(record.ultimoLogin).format('DD/MM/YYYY')} </span>
+        <span > {record.ultimoLogin ? dayjs(record.ultimoLogin).format('DD/MM/YYYY') : <>---</>} </span>
       )
     },
     {
-      title: "Rol",
-      key: "id",
+      title: "Alumno",
+      dataIndex: "esAlumno",
       width: "2%",
       align: "center",
       render: (text, record, index) => {
-        const {esAdmin,esAlumno} = record
-        return <span> {esAdmin ? 'Admin' : 'Alumno'} </span>
+        const {esAdmin,esAlumnio} = record;
+        return <span> 
+        {
+          esAlumnio 
+            ? <CheckCircleOutlined style={{ color: "orange" }}/> 
+            : <CloseCircleOutlined style={{ color: "red" }} />
+        } 
+        </span>
+      },
+    },
+    {
+      title: "Admin",
+      dataIndex: "esAdmin",
+      key: "usuarioID",
+      width: "2%",
+      align: "center",
+      render: (text, record, index) => {
+        const {esAdmin,esAlumno} = record;
+        return <span> 
+        {
+          esAdmin 
+            ? <CheckCircleOutlined style={{ color: "orange" }}/> 
+            : <CloseCircleOutlined style={{ color: "red" }} />
+        } 
+        </span>
       },
     },
     {

@@ -1,5 +1,6 @@
 import { Checkbox, Col, Row } from "antd";
 import { InputText } from "../../../../../../components/input/InputText";
+import { colores } from "../../../../../../const/colores";
 
 export const Formulario = ({
   form,
@@ -21,7 +22,7 @@ export const Formulario = ({
             err={formValidation?.nombreValid && messageError}
           />
           {messageError && (
-            <p style={{ fontSize: 12 }}>{formValidation?.nombreValid}</p>
+            <p style={{ fontSize: 12, color:colores.error }}>{formValidation?.nombreValid}</p>
           )}
         </Col>
       </Row>
@@ -54,9 +55,7 @@ export const Formulario = ({
           </Row>
         );
       })}
-      {messageError && (
-        <p style={{ fontSize: 12 }}>{formValidation?.respuestasValid}</p>
-      )}
+      {messageError && (<p style={{ fontSize: 12, color:colores.error }}>{formValidation?.respuestasValid}</p>)}
     </>
   );
 };

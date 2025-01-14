@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Button, Col, Modal, Row } from "antd";
 import dayjs from "dayjs";
-import { userFormActualizarUsuario } from "../../../../hooks/userFormActualizarUsuario"
+import { Button, Col, message, Popconfirm, Row } from "antd";
 import { InputText } from "../../../../components/input/InputText";
 import { ModalEditar } from "./modalEdiar/ModalEditar";
 
@@ -10,8 +9,15 @@ import { ModalEditar } from "./modalEdiar/ModalEditar";
 export const EditarAlumno = () => {
   const [openModal, setOpenModal] = useState(false);
   const {usuario} = useSelector(state => state.usuariosReducer);
-  const formulario = userFormActualizarUsuario(usuario);
-  const {form} = formulario;
+
+  const handleEliminarTema = () => {
+    message.error('Pendiente por eliminar');
+  };
+
+  const handleEliminarCancelar = (e) => {
+    message.error('Cancelado');
+  };
+
   return (
     <>
       <Row gutter={[16, 8]}>
@@ -19,7 +25,7 @@ export const EditarAlumno = () => {
           <InputText
             name={"nombre"}
             label={"Nombre"}
-            value={form?.nombre}
+            value={usuario.nombre}
             readOnly={true}
           />
         </Col>
@@ -27,7 +33,7 @@ export const EditarAlumno = () => {
           <InputText
             name={"email"}
             label={"Correo"}
-            value={form?.email}
+            value={usuario.email}
             readOnly={true}
             
           />
@@ -36,7 +42,7 @@ export const EditarAlumno = () => {
           <InputText
             label={"Vence"}
             name={"fechaLimite"}
-            value={form.fechaLimite && dayjs(form?.fechaLimite).format('DD/MM/YYYY')}
+            value={usuario.fechaLimite && dayjs(usuario.fechaLimite).format('DD/MM/YYYY')}
             readOnly={true}
           />
           
@@ -45,7 +51,7 @@ export const EditarAlumno = () => {
           <InputText
             label={"Último Login"}
             name={"fechaLimite"}
-            value={form.ultimoLogin && dayjs(form?.ultimoLogin).format('DD/MM/YYYY')}
+            value={usuario.ultimoLogin && dayjs(usuario.ultimoLogin).format('DD/MM/YYYY')}
             readOnly={true}
           />
           
@@ -53,17 +59,24 @@ export const EditarAlumno = () => {
       </Row>
       <Row >
         <Col >
-          <Button onClick={()=>setOpenModal(true)}>
+          <Button type="primary" onClick={()=>setOpenModal(true)}>
             Editar Datos
           </Button>
         </Col>
         <Col >
-          <Button >
-            Eliminar Alumno
-          </Button>
+          <Popconfirm
+            title="Eliminar actual"
+            description="¿Estás seguro que quieres eliminar el alumno actual?"
+            onConfirm={handleEliminarTema}
+            onCancel={handleEliminarCancelar}
+            okText="Eliminar"
+            cancelText="No"
+          >
+            <Button danger>Eliminar Alumno </Button>
+          </Popconfirm>
         </Col>
       </Row>
-      <ModalEditar open={openModal} setOpen={setOpenModal} formulario={formulario}/>
+      <ModalEditar open={openModal} setOpen={setOpenModal} usuario={usuario}/>
     </>
   )
 }

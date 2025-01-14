@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Col, Row } from "antd";
+import { Button, Col, message, Popconfirm, Row } from "antd";
 import { InputText } from "../../../components/input/InputText";
 import { useFormActualizarTema } from "../../../hooks/useFormActualizarTema";
 import { InputNum } from "../../../components/input/InputNum";
 import { startEliminarTema } from "../../../store/slices/contenidos/thunks";
+import { colores } from "../../../const/colores";
 
 export const ActualizarDatos = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,10 @@ export const ActualizarDatos = () => {
     dispatch(startEliminarTema(id));
   };
 
+  const handleEliminarCancelar = (e) => {
+    message.error('Cancelado');
+  };
+
   return (
     <Row gutter={[16, 8]}>
       <Col  md={8} xs={24}>
@@ -45,7 +50,7 @@ export const ActualizarDatos = () => {
           err={formValidation?.nombre && messageError}
         />
         {messageError && (
-          <span style={{ fontSize: 12 }}> {formValidation?.nombreValid} </span>
+          <span style={{ fontSize: 12, color:colores.error }}> {formValidation?.nombreValid} </span>
         )}
       </Col>
       <Col  md={4} xs={24}>
@@ -59,11 +64,7 @@ export const ActualizarDatos = () => {
           }}
           err={formValidation?.tiempoMaxMinutos && messageError}
         />
-        {messageError && (
-          <span style={{ fontSize: 12 }}>
-            {" "}
-            {formValidation?.tiempoMaxMinutosValid}{" "}
-          </span>
+        {messageError && (<span style={{ fontSize: 12, color:colores.error }}>{formValidation?.tiempoMaxMinutosValid}</span>
         )}
       </Col>
       <Col>
@@ -72,9 +73,17 @@ export const ActualizarDatos = () => {
         </Button>
       </Col>
       <Col>
-        <Button danger style={{ marginTop: 19 }} onClick={handleEliminarTema}>
-          Eliminar Tema
-        </Button>
+
+        <Popconfirm
+            title="Eliminar lámina actual"
+            description="¿Estás seguro que quieres eliminar esta lámina?"
+            onConfirm={handleEliminarTema}
+            onCancel={handleEliminarCancelar}
+            okText="Eliminar"
+            cancelText="No"
+          >
+            <Button danger style={{ marginTop: 19 }}>Eliminar Tema </Button>
+          </Popconfirm>
       </Col>
     </Row>
   );

@@ -20,7 +20,6 @@ export const ModalAgregar = ({open, setOpen}) => {
   };
 
   const handleCancel =()=>{
-    console.log('cancel');
     setOpen(false);
   };
 

@@ -60,11 +60,13 @@ export const startActualizarTema =(body)=>{
 export const startEliminarTema =(id)=>{
   return async dispatch =>{
     try {
+      dispatch(setNotificacion(creaNotificacion('error', 'Pendiente por eliminar')));
       const res = await fetch('delete',`${URL_BASE}/api/temas/${id}`, {});
       if (res.ok) {
         dispatch(setNotificacion(creaNotificacion('success', 'Contenido Eliminado')));
+      }else{
+        dispatch(setNotificacion(creaNotificacion('error', 'Pendiente por eliminar')));
       };
-      dispatch(setNotificacion(creaNotificacion('error', 'Pendiente por eliminar')));
     } catch (error) {
       console.log(error);
     };

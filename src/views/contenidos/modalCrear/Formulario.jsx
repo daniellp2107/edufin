@@ -1,6 +1,7 @@
 import { Col, Row } from "antd";
 import {InputText} from "../../../components/input/InputText";
 import {InputNum} from "../../../components/input/InputNum";
+import { colores } from "../../../const/colores";
 
 export const Formulario = ({form, onChangeText, onChangeVal, formValidation, messageError}) => {
   return (
@@ -14,7 +15,7 @@ export const Formulario = ({form, onChangeText, onChangeVal, formValidation, mes
           err={formValidation.nombre && messageError}
         />
         {messageError && (
-          <span style={{ fontSize: 12 }}> {formValidation.nombreValid} </span>
+          <span style={{ fontSize: 12, color:colores.error }}> {formValidation.nombreValid} </span>
         )}
       </Col>
       <Col span={20} md={24}>
@@ -28,7 +29,7 @@ export const Formulario = ({form, onChangeText, onChangeVal, formValidation, mes
           err={formValidation.tiempoMaxMinutosValid && messageError}
         />
         {messageError && (
-          <span style={{ fontSize: 12 }}> {formValidation.tiempoMaxMinutosValid} </span>
+          <span style={{ fontSize: 12, color:colores.error }}> {formValidation.tiempoMaxMinutosValid} </span>
         )}
       </Col>
     </Row>

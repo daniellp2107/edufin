@@ -5,11 +5,9 @@ import { useSelector } from 'react-redux';
 export const Eliminar = () => {
   const { laminaActual } = useSelector(state => state.contenidosReducer);
   const confirm = (e) => {
-    console.log(e);
     message.success('Click on Yes');
   };
   const cancel = (e) => {
-    console.log(e);
     message.error('Click on No');
   };
   return (
