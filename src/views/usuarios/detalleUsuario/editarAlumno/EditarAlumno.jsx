@@ -76,7 +76,7 @@ export const EditarAlumno = () => {
           </Popconfirm>
         </Col>
       </Row>
-      <ModalEditar open={openModal} setOpen={setOpenModal} usuario={usuario}/>
+      <ModalEditar open={openModal} setOpen={setOpenModal}/>
     </>
   )
 }

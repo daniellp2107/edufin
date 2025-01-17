@@ -8,10 +8,11 @@ import { startSetUsuarioActual } from '../../../store/slices/usuarios/thunks'
 export const useColumns = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
   const handleClick =(id)=>{
     dispatch(startSetUsuarioActual(id));
     navigate(`/usuarios/${id}`);
-  }
+  };
 
   const columnas = [
     {

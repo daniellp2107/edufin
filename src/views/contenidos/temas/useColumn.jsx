@@ -10,7 +10,6 @@ export const useColumn = () => {
   const dispatch = useDispatch();
 
   const handleClick =(record)=>{
-    console.log(record);
     const {id, nombre, tiempoMaxMinutos} = record;
     dispatch(startEditarTema({id, nombre, tiempoMaxMinutos}));
     navigate(`/contenidos/detalles/${id}`);

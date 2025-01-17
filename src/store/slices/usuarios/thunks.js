@@ -48,7 +48,7 @@ export const startSetUsuarioActual = (usuario)=>{
 export const startActualizarUsuario =(body)=>{
   return async (dispatch) => {
     try {
-      const res = await fetch('post', `${URL_BASE}/api/usuarios`, body);
+      const res = await fetch('put', `${URL_BASE}/api/usuarios`, body);
       if (res.ok) {
         setNotificacion(setNotificacion(creaNotificacion('success', 'Usuario Actualizado')));
         dispatch(startCargaUsuarios());

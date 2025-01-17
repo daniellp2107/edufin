@@ -9,7 +9,7 @@ const initialData = {
   email: "",
   nombre: "",
   password: "",
-  fechaLimite:dayjs().format('DD/MM/YYYY'),
+  fechaLimite:dayjs().add(30,'day'),
   esAlumno: false,
   esAdmin: false,
   confirmPassword: "",

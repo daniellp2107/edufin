@@ -3,6 +3,7 @@ import { userSlice } from "./slices/auth/userSlice";
 import { contenidosSlice } from "./slices/contenidos/contenidosSlice";
 import { usuariosSlice } from "./slices/usuarios/usuariosSlice";
 import { notificacionSlice } from "./slices/notificacion/notificacionSlice";
+import { dashboardSlice } from "./slices/dashboard/dashboardSlice";
 
 export const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
       contenidosReducer: contenidosSlice.reducer,
       usuariosReducer: usuariosSlice.reducer,
       notificacionReducer: notificacionSlice.reducer,
+      dashboardReducer:dashboardSlice.reducer,
     },
   });
   

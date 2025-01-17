@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Modal } from "antd";
 import { Formulario } from "./Formulario";
 import { checkForm, formValidationsActualizarUsuario, isFormValid } from "../../../../../utils/formValidations";
 import { userFormActualizarUsuario } from "../../../../../hooks/userFormActualizarUsuario";
-import { useSelector } from "react-redux";
 
-export const ModalEditar = ({ open, setOpen, usuario }) => {
-  // const {usuario} = useSelector(state => state.usuariosReducer);
+export const ModalEditar = ({ open, setOpen }) => {
+  const {usuario} = useSelector(state => state.usuariosReducer);
+  const {nombre, email ,fechaLimite, esAdmin, esAlumno} = usuario; 
   const [messageError, setMessageError] = useState(false);
   const [confirmPass, setConfirmPass] = useState(null);
   const [confirmRol, setConfirmRol] = useState(null);
   const [formValidation, setFormValidation] = useState();
   
-  const {form, onClickGenPass, onChangeDate, onChangeText, onChangeVal, handleSubmit, handleReset} = userFormActualizarUsuario(usuario);
+  const {form, setForm,onClickGenPass, onChangeDate, onChangeText, onChangeVal, handleSubmit, handleReset} = userFormActualizarUsuario(usuario);
 
   useEffect(() => {
-    
-  }, [usuario])
+    setForm(usuario)
+  }, [usuario]);
   
 
   const handleOk = () => {
@@ -39,6 +40,7 @@ export const ModalEditar = ({ open, setOpen, usuario }) => {
       setConfirmRol('Elige almenos un rol para el usuario');
       return;
     };
+    handleSubmit();
     setConfirmPass(null);
     setConfirmRol(null);
     setMessageError(false);

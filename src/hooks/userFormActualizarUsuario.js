@@ -41,6 +41,7 @@ export const userFormActualizarUsuario = (usuario) => {
 
   return {
     form,
+    setForm,
     onClickGenPass,
     onChangeDate,
     onChangeText,

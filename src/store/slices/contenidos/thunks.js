@@ -60,8 +60,7 @@ export const startActualizarTema =(body)=>{
 export const startEliminarTema =(id)=>{
   return async dispatch =>{
     try {
-      dispatch(setNotificacion(creaNotificacion('error', 'Pendiente por eliminar')));
-      const res = await fetch('delete',`${URL_BASE}/api/temas/${id}`, {});
+      const res = await fetch('delete',`${URL_BASE}/api/temas/${id}`,{});
       if (res.ok) {
         dispatch(setNotificacion(creaNotificacion('success', 'Contenido Eliminado')));
       }else{
@@ -118,12 +117,12 @@ export const startEditarPregunta =(pregunta)=>{
 export const startEliminarPregunta =(pregunta)=>{
   return async dispatch =>{
     try {
-      console.log('Elemento pendiente por eliminar: ', pregunta);
-      dispatch(setNotificacion(creaNotificacion('error', 'Pendiente por eliminar')));
-      // const res = await fetch('delete',`${URL_BASE}/api/preguntas/`);
-      // if (res.ok) {
-      //   console.log('Elemento pendiente por eliminar: ', pregunta);
-      // }
+      const res = await fetch('delete',`${URL_BASE}/api/preguntas/${pregunta.id}`);
+      if (res.ok) {
+        dispatch(setNotificacion(creaNotificacion('error', 'Pendiente por eliminar')));
+      }else{
+        dispatch(setNotificacion(creaNotificacion('error', 'No se puedo eliminar pregunta')));
+      };
     } catch (error) {
       console.log(error);
     };

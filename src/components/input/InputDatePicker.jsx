@@ -2,6 +2,7 @@ import { DatePicker, Input } from "antd";
 import React from "react";
 
 export const InputDatePicker = ({
+  picker,
   label,
   name,
   onChange,
@@ -26,6 +27,7 @@ export const InputDatePicker = ({
         value={value}
         className={err && "inputErr"}
         style={{ width: "100%" }}
+        picker={picker}
       />
     </>
   );

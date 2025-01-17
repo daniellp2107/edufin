@@ -62,8 +62,9 @@ export const Formulario = ({
       </Col>
       <Col md={12} sm={24}>
         <InputDatePicker
-          label={"Inicio de labores"}
+          label={"Fecha Límite"}
           name={"fechaLimite"}
+          value={form.fechaLimite}
           onChange={(value, value2) => {
             let target = { name: "fechaLimite", value: value2 };
             onChangeDate(target);

@@ -135,3 +135,16 @@ input[type='range'] {
 span {
   margin-left: 10px;
 }
+
+/* dashboard */
+
+.circles-container{
+  width: 100%;
+}
+
+.circle-name{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
