@@ -9,9 +9,9 @@ export const HistorialExamenes = () => {
 
   return (
     <div style={{display:'flex', flexDirection:'column'}}>
-      {examenesFinal.map(ex =>(
+      {examenesFinal.map((ex,index) =>(
         <>
-          <table style={{textAlign:'center', color:colores.label}}>
+          <table key={`examen_${index}`} style={{textAlign:'center'}}>
             <tr>
               <th>Fecha</th>
               <th>Preguntas Correctas</th>
