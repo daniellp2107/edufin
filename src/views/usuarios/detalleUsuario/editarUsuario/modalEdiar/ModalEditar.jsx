@@ -7,7 +7,6 @@ import { userFormActualizarUsuario } from "../../../../../hooks/userFormActualiz
 
 export const ModalEditar = ({ open, setOpen }) => {
   const {usuario} = useSelector(state => state.usuariosReducer);
-  const {nombre, email ,fechaLimite, esAdmin, esAlumno} = usuario; 
   const [messageError, setMessageError] = useState(false);
   const [confirmPass, setConfirmPass] = useState(null);
   const [confirmRol, setConfirmRol] = useState(null);

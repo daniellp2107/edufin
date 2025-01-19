@@ -5,13 +5,17 @@ export const usuariosSlice = createSlice({
   initialState: {
     usuarios:[],
     usuario:{},
+    actividades:[],
+    examenesFinal:[]
   },
   reducers: {
     storeUsuarios: (state, {payload})=>{
       state.usuarios = payload;
     },
     storeUsuario:(state, {payload})=>{
-      state.usuario = payload;
+      state.usuario = payload.usuario;
+      state.actividades = payload.actividades;
+      state.examenesFinal = payload.examenesFinal;
     },
   },
 });

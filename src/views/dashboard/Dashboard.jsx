@@ -15,7 +15,7 @@ export const Dashboard = () => {
     }
     dispatch(startCargaDashboard(body));
   }, [])
-  
+  console.log('dashboard');
   return (
     <>
       <Card title="Coontador de Accesos" style={{marginBottom:10}}>

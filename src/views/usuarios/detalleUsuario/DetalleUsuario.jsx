@@ -1,12 +1,14 @@
 import { Card, Divider } from 'antd';
-import { EditarAlumno } from './editarAlumno/EditarAlumno';
+import { EditarUsuario } from './editarUsuario/EditarUsuario';
+import { MostrarDetalles } from './mostrarDetalles/MostrarDetalles';
 
 export const DetalleUsuario = () => {
 
   return (
     <Card title='Detalles de Usuario'>
-      <EditarAlumno />
+      <EditarUsuario />
       <Divider />
+      <MostrarDetalles />
     </Card>
   )
 }

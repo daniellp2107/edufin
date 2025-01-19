@@ -6,7 +6,7 @@ import { InputText } from "../../../../components/input/InputText";
 import { ModalEditar } from "./modalEdiar/ModalEditar";
 
 
-export const EditarAlumno = () => {
+export const EditarUsuario = () => {
   const [openModal, setOpenModal] = useState(false);
   const {usuario} = useSelector(state => state.usuariosReducer);
 
@@ -72,7 +72,7 @@ export const EditarAlumno = () => {
             okText="Eliminar"
             cancelText="No"
           >
-            <Button danger>Eliminar Alumno </Button>
+            <Button danger>Eliminar Usuario </Button>
           </Popconfirm>
         </Col>
       </Row>

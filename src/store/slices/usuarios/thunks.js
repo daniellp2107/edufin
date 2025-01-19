@@ -37,7 +37,7 @@ export const startSetUsuarioActual = (usuario)=>{
     try {
       const res = await fetch('get', `${URL_BASE}/api/usuarios/GetUsuarioFull/${usuario}`);
       if (res.ok) {
-        dispatch(storeUsuario(res.data.usuario));
+        dispatch(storeUsuario(res.data));
       };
     } catch (error) {
       console.log(error);
