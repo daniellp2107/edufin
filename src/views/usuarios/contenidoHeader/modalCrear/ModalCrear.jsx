@@ -12,6 +12,7 @@ export const ModalCrear = ({open, setOpen}) => {
   const handleClickOk =()=>{
     if (!isFormValid()) {
       setMessageError(true);
+      console.log(formValidation);
       return;
     };
     if ((form.password !== form.confirmPassword)) {
@@ -33,12 +34,13 @@ export const ModalCrear = ({open, setOpen}) => {
 
   const handleClickCancel =()=>{
     handleReset();
+    setMessageError(false);
     setOpen(false);
   };
 
   return (
     <Modal 
-      title="Agregar Nuevo Tema"
+      title="Agregar Usuario"
       centered
       open={open}
       onOk={handleClickOk}

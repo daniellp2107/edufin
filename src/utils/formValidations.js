@@ -31,7 +31,7 @@ export const formValidationsNuevoTema = {
     "Mínimo 3 caracteres",
   ],
   tiempoMaxMinutos: [(value) => value >= 5, "Tiempo mínimo es de 5 minutos"],
-  preguntasFinal: [(value) => value >= 1, "Minimo de preguntas 1"],
+  preguntasFinal: [(value) => value >= 10, "Minimo de preguntas 10"],
 };
 
 export const formValidationsAgregarPregunta = {
@@ -86,7 +86,7 @@ export const formValidationsAgregarUsuario = {
   email: [value => esEmailValido(value), 'Este campo es necesario'],
   password: [value => value.trim().length > 5 && value.trim() !== '', 'Mínimo 5 caracteres'],
   confirmPassword: [value => value.trim().length > 5 && value.trim() !== '', 'Verifica tu contraseña'],
-  fechaLimite: [value => (dayjs(value).format('DD/MM/YYYY') !== dayjs().format('DD/MM/YYYY')) && (dayjs(value).format('DD/MM/YYYY') > dayjs().format('DD/MM/YYYY')), 'Necesito una fecha valida'],
+  fechaLimite: [value => (dayjs(value) > dayjs()) && dayjs(value).isValid() && (dayjs(value) !== dayjs()), 'Necesito una fecha valida'],
   esAlumno: [value => typeof(value)==='boolean', 'Elige una opción'],
   esAdmin: [value => typeof(value)==='boolean', 'Elige una opción'],
 };

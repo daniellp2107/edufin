@@ -3,6 +3,7 @@ import { InputText } from "../../../../components/input/InputText";
 import { InputDatePicker } from "../../../../components/input/InputDatePicker";
 import { generatePassword } from "../../../../utils/generatePassword";
 import InputPassword from "../../../../components/input/InputPassword";
+import dayjs from "dayjs";
 
 export const Formulario = ({
   confirmPass,
@@ -64,7 +65,7 @@ export const Formulario = ({
         <InputDatePicker
           label={"Fecha Límite"}
           name={"fechaLimite"}
-          value={form.fechaLimite}
+          value={dayjs( form.fechaLimite ) }
           onChange={(value, value2) => {
             let target = { name: "fechaLimite", value: value2 };
             onChangeDate(target);
