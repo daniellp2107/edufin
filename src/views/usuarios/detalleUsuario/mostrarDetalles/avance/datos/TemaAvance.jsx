@@ -12,7 +12,7 @@ export const TemaAvance = ({ actividad }) => {
         Progreso
         <Progress
           strokeColor={colores.strokeColorBar}
-          percent={(laminasVistas / laminasTotales) * 100}
+          percent={(laminasVistas / laminasTotales).toPrecision(2) * 100}
         />
       </div>
       <div style={{ marginTop: 20 }}>

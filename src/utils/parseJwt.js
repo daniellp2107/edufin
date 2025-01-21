@@ -10,6 +10,5 @@ export default function parseJwt(token) {
         })
         .join("")
     );
- // console.log(jsonPayload)
     return JSON.parse(jsonPayload);
   }

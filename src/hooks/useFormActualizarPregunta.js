@@ -41,7 +41,6 @@ export const useFormActualizarPregunta = (pregunta) => {
   const handleReset = () => setForm(pregunta);
 
   const handleSubmit = () => {
-    console.log("Actualizando preguntas", form);
     const datos = {
       ...form,
       respuestas:form.respuestasFull

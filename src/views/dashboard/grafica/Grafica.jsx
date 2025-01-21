@@ -1,62 +1,50 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Button, Col, Row } from "antd";
 import dayjs from "dayjs";
+import { useFormActualizarFecha } from "../../../hooks/useFormActualizarFecha";
 import { InputDatePicker } from "../../../components/input/InputDatePicker";
-import { startCargaDashboard } from "../../../store/slices/dashboard/thunks";
-
-const options = [
-  { label: "Enero", value: 1 },
-  { label: "Febrero", value: 2 },
-  { label: "Marzo", value: 3 },
-  { label: "Abril", value: 4 },
-  { label: "Mayo", value: 5 },
-  { label: "Junio", value: 6 },
-  { label: "Julio", value: 7 },
-  { label: "Agosto", value: 8 },
-  { label: "Septiembre", value: 9 },
-  { label: "Octubre", value: 10 },
-  { label: "Noviembre", value: 11 },
-  { label: "Diciembre", value: 12 },
-];
+import { MostrarGrafica } from "./MostrarGrafica";
+import { useSelector } from "react-redux";
 
 export const Grafica = () => {
-  const dispatch = useDispatch();
-  const [form, setForm] = useState({
-    mes: dayjs().month() + 1,
-    anio: dayjs().year(),
-    fechaActual:dayjs().format('DD/MM/YYYY')
-  });
-
-  const onChangeDate = (e) => {
-    setForm(e);
-  };
-
-  const handleSubmit =()=>{
-    console.log(form);
-    console.log('enviar datos');
-    dispatch(startCargaDashboard(form));
-  };
-
+  const { accesosPorDiaEnElMes } = useSelector((state) => state.dashboardReducer);
+  const { form, setForm, handleSubmit, onChangeDate } = useFormActualizarFecha();
   return (
-    <Row>
-      <Col>
-        <InputDatePicker
-          label={"Elige un mes"}
-          name={"mes"}
-          onChange={(value, value2) => {
-            const [anio,mes] = value2.split('-');
-            let fecha = { mes: `${mes}`, anio: `${anio}` }
-            onChangeDate(fecha);
-          }}
-          picker={'month'}
-        />
-      </Col>
-      <Col>
-        <Button onClick={handleSubmit} style={{marginTop:22}}>
-          Actualizar
-        </Button>
-      </Col>
-    </Row>
+    <>
+      <Row gutter={[16,8]} justify={'start'} style={{marginBottom:10, backgroundColor:'ButtonFace'}} align={'bottom '}>
+        <Col sm={24} md={6}>
+          <InputDatePicker
+            label={"Elige un mes"}
+            name={"fechaActual"}
+            onChange={(value, value2) => {
+              const [anio, mes] = value2.split("-");
+              let target = {
+                name: "fechaActual",
+                value: dayjs(`${mes}/01/${anio}`),
+              };
+              onChangeDate(target);
+            }}
+            value={form.fechaActual}
+            picker={"month"}
+          />
+        </Col>
+        <Col >
+          <Button 
+            
+            onClick={handleSubmit}
+          >
+            Actualizar
+          </Button>
+        </Col>
+      </Row>
+      <Row justify={"center"}>
+        <Col sm={24} md={20}>
+          <MostrarGrafica
+            form={form}
+            setForm={setForm}
+            accesosPorDiaEnElMes={accesosPorDiaEnElMes}
+          />
+        </Col>
+      </Row>
+    </>
   );
 };

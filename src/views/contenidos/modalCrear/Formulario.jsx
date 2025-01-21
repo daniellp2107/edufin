@@ -32,6 +32,20 @@ export const Formulario = ({form, onChangeText, onChangeVal, formValidation, mes
           <span style={{ fontSize: 12, color:colores.error }}> {formValidation.tiempoMaxMinutosValid} </span>
         )}
       </Col>
+      <Col span={20} md={24}>
+        <InputNum
+          name={"preguntasFinal"}
+          label={"Preguntas"}
+          onChange={(value) => {
+            let target = { name: "preguntasFinal", value: value };
+            onChangeVal(target);
+          }}
+          err={formValidation.preguntasFinalValid && messageError}
+        />
+        {messageError && (
+          <span style={{ fontSize: 12, color:colores.error }}> {formValidation.preguntasFinalValid} </span>
+        )}
+      </Col>
     </Row>
   );
 };

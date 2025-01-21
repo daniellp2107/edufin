@@ -11,7 +11,7 @@ export const ActualizarDatos = () => {
   const dispatch = useDispatch();
   const { tema } = useSelector((state) => state.contenidosReducer);
   const [messageError, setMessageError] = useState(false);
-  const { id, nombre, tiempoMaxMinutos } = tema;
+  const { id, nombre, tiempoMaxMinutos, preguntasFinal } = tema;
   const {
     form,
     formValidation,
@@ -20,7 +20,7 @@ export const ActualizarDatos = () => {
     isFormValid,
     onChangeText,
     onChangeVal,
-  } = useFormActualizarTema({ id, nombre, tiempoMaxMinutos });
+  } = useFormActualizarTema({ id, nombre, tiempoMaxMinutos, preguntasFinal });
 
   const handleActualizarTema = () => {
     if (!isFormValid()) {
@@ -36,45 +36,75 @@ export const ActualizarDatos = () => {
   };
 
   const handleEliminarCancelar = (e) => {
-    message.error('Cancelado');
+    message.error("Cancelado");
   };
 
   return (
-    <Row gutter={[16, 8]}>
-      <Col  md={8} xs={24}>
-        <InputText
-          name={"nombre"}
-          label={"Nombre"}
-          value={form.nombre}
-          onChange={onChangeText}
-          err={formValidation?.nombre && messageError}
-        />
-        {messageError && (
-          <span style={{ fontSize: 12, color:colores.error }}> {formValidation?.nombreValid} </span>
-        )}
-      </Col>
-      <Col  md={4} xs={24}>
-        <InputNum
-          name={"tiempoMaxMinutos"}
-          label={"T. Máximo Examen"}
-          value={form.tiempoMaxMinutos}
-          onChange={(value) => {
-            let target = { name: "tiempoMaxMinutos", value: value };
-            onChangeVal(target);
-          }}
-          err={formValidation?.tiempoMaxMinutos && messageError}
-        />
-        {messageError && (<span style={{ fontSize: 12, color:colores.error }}>{formValidation?.tiempoMaxMinutosValid}</span>
-        )}
-      </Col>
-      <Col>
-        <Button type="primary" style={{ marginTop: 19 }} onClick={handleActualizarTema}>
-          Actualizar Tema
-        </Button>
-      </Col>
-      <Col>
-
-        <Popconfirm
+    <>
+      <Row gutter={[16, 8]}>
+        <Col md={8} xs={24}>
+          <InputText
+            name={"nombre"}
+            label={"Nombre"}
+            value={form.nombre}
+            onChange={onChangeText}
+            err={formValidation?.nombre && messageError}
+          />
+          {messageError && (
+            <span style={{ fontSize: 12, color: colores.error }}>
+              {" "}
+              {formValidation?.nombreValid}{" "}
+            </span>
+          )}
+        </Col>
+        <Col md={4} xs={24}>
+          <InputNum
+            name={"tiempoMaxMinutos"}
+            label={"T. Máximo Examen"}
+            value={form.tiempoMaxMinutos}
+            onChange={(value) => {
+              let target = { name: "tiempoMaxMinutos", value: value };
+              onChangeVal(target);
+            }}
+            err={formValidation?.tiempoMaxMinutos && messageError}
+          />
+          {messageError && (
+            <span style={{ fontSize: 12, color: colores.error }}>
+              {formValidation?.tiempoMaxMinutosValid}
+            </span>
+          )}
+        </Col>
+        <Col md={4} xs={24}>
+          <InputNum
+            name={"preguntasFinal"}
+            label={"Preguntas"}
+            value={form.preguntasFinal}
+            onChange={(value) => {
+              let target = { name: "preguntasFinal", value: value };
+              onChangeVal(target);
+            }}
+            err={formValidation?.preguntasFinal && messageError}
+          />
+          {messageError && (
+            <span style={{ fontSize: 12, color: colores.error }}>
+              {" "}
+              {formValidation?.preguntasFinalValid}{" "}
+            </span>
+          )}
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button
+            type="primary"
+            style={{ marginTop: 19 }}
+            onClick={handleActualizarTema}
+          >
+            Actualizar Tema
+          </Button>
+        </Col>
+        <Col>
+          <Popconfirm
             title="Eliminar lámina actual"
             description="¿Estás seguro que quieres eliminar esta lámina?"
             onConfirm={handleEliminarTema}
@@ -82,9 +112,12 @@ export const ActualizarDatos = () => {
             okText="Eliminar"
             cancelText="No"
           >
-            <Button danger style={{ marginTop: 19 }}>Eliminar Tema </Button>
+            <Button danger style={{ marginTop: 19 }}>
+              Eliminar Tema{" "}
+            </Button>
           </Popconfirm>
-      </Col>
-    </Row>
+        </Col>
+      </Row>
+    </>
   );
 };

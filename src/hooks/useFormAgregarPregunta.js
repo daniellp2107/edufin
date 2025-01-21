@@ -57,7 +57,6 @@ export const useFormAgregarPregunta = ({id}) => {
   const handleReset = () => setForm(datosIniciales);
 
   const handleSubmit = () => {
-    console.log("agregando preguntas");
     const body = {
       temaID:id,
       nombre:form.nombre,

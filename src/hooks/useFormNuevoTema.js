@@ -27,7 +27,6 @@ export const useFormNuevoTema = () => {
   const handleReset = () => setForm(datosIniciales);
 
   const handleSubmit = () => {
-    console.log("agregando temas");
     dispatch(startAgregarTema(form));
   };
 

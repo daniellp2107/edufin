@@ -25,7 +25,6 @@ export const ModalEditar = ({ open, setOpen }) => {
     if(!isValid){
       setFormValidation(validaciones);
       setMessageError(true);
-      console.log(formValidation);
       return;
     };
     if (form.password !== form.confirmPassword) {

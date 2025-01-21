@@ -55,7 +55,7 @@ export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, o
         <InputDatePicker
           label={"Fecha Limite"}
           name={"fechaLimite"}
-          value={dayjs(form?.fechaLimite)}
+          value={form.fechaLimite && dayjs(form?.fechaLimite)}
           onChange={(value, value2) => {
             let target = { name: "fechaLimite", value: value2 };
             onChangeDate(target);

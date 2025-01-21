@@ -10,7 +10,6 @@ export const startCargaUsuarios =()=>{
     try {
       const res = await fetch('get', `${URL_BASE}/api/usuarios`);
       if (res.ok) {
-        console.log('Usuarios cargados');
         dispatch(storeUsuarios(res.data));
       };
     } catch (error) {

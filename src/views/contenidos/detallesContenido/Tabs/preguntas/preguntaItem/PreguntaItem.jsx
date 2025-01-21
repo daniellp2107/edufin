@@ -19,21 +19,29 @@ export const Pregunta = ({ pregunta }) => {
     setOpen(true);
   };
 
-  const handleEliminar =()=>{
-    console.log('Eliminar pregunta');
+  const handleEliminar = () => {
     dispatch(startEliminarPregunta(pregunta));
   };
 
   return (
     <>
       <Card
+        styles={{
+          title: {
+            height: "auto",
+            textWrap: "wrap",
+            fontStyle: "normal",
+            fontWeight: "400",
+          },
+          header: { display: "flex", flexWrap: "wrap" },
+        }}
         title={nombre}
         extra={
           <Controles
             open={open}
             setOpen={setOpen}
             preguntaActual={handleActual}
-            eliminarActual = {handleEliminar}
+            eliminarActual={handleEliminar}
           />
         }
       >

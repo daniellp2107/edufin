@@ -31,6 +31,7 @@ export const formValidationsNuevoTema = {
     "Mínimo 3 caracteres",
   ],
   tiempoMaxMinutos: [(value) => value >= 5, "Tiempo mínimo es de 5 minutos"],
+  preguntasFinal: [(value) => value >= 1, "Minimo de preguntas 1"],
 };
 
 export const formValidationsAgregarPregunta = {
@@ -73,8 +74,8 @@ export const formValidationsEditarPregunta = {
   respuestasFull: [
     (respuestas) => {
       const nombresVacios = respuestas.filter(respuesta => respuesta.nombre !== "").length;
-      const hayRespuestaCorrecta = respuestas.some(respuesta => respuesta.esCorrecta === true);
-      return nombresVacios === 4 && hayRespuestaCorrecta;
+      const hayRespuestaCorrecta = respuestas.filter(respuesta => respuesta.esCorrecta === true).length;
+      return nombresVacios === 4 && hayRespuestaCorrecta === 1;
     },
     "Necesito 4 respuestas y solo una correcta",
   ],
@@ -98,7 +99,7 @@ export const formValidationsAgregarLamina = {
 export const formValidationsActualizarUsuario = {
   nombre: [(value) => value.length > 3, "Mínimo 3 caracteres"],
   email: [value => esEmailValido(value), 'Necesito un correo válido'],
-  fechaLimite: [value => (dayjs(value).format('DD/MM/YYYY') > dayjs().format('DD/MM/YYYY')) && dayjs(value).isValid() && (dayjs(value).format('DD/MM/YYYY') !== dayjs().format('DD/MM/YYYY')), 'Necesito una fecha valida'],
+  fechaLimite: [value => (dayjs(value) > dayjs()) && dayjs(value).isValid() && (dayjs(value) !== dayjs()), 'Necesito una fecha valida'],
   password: [value => value?.trim().length > 5 && value?.trim() !== '', 'Mínimo 5 caracteres'],
   confirmPassword: [value => value?.trim().length > 5 && value?.trim() !== '', 'Verifica tu contraseña'],
   esAlumno: [value => typeof(value)==='boolean', 'Elige una opción'],

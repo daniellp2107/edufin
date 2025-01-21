@@ -13,7 +13,10 @@ export const dashboardSlice = createSlice({
       state.accesosMes = payload.accesosMes;
       state.accesosPorDiaEnElMes = payload.accesosPorDiaEnElMes;
     },
+    storeAccesosPorMes:(state, {payload})=>{
+      state.accesosPorDiaEnElMes = payload;
+    },
   },
 });
 
-export const {storeDashboard} = dashboardSlice.actions;
+export const {storeDashboard, storeAccesosPorMes} = dashboardSlice.actions;

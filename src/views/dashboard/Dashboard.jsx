@@ -9,12 +9,9 @@ import { Grafica } from "./grafica/Grafica";
 export const Dashboard = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    const body = {
-      mes:dayjs().month() + 1,
-      anio:dayjs().year()
-    }
-    dispatch(startCargaDashboard(body));
-  }, [])
+    const fecha = dayjs().format('MM/YYYY');
+    dispatch(startCargaDashboard(fecha));
+  }, []);
   console.log('dashboard');
   return (
     <>

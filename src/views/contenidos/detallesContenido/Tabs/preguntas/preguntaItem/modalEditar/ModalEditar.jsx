@@ -19,7 +19,6 @@ export const ModalEditar = ({ open, setOpen, pregunta }) => {
     if(!isValid){
       setFormValidation(validaciones);
       setMessageError(true);
-      console.log(formValidation);
       return;
     };
 

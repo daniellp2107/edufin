@@ -103,25 +103,38 @@ body {
 
 /* Slider */
 .slider-container {
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
 
 .image-container img {
-  width: 100%;
-  max-width: 600px;
+  width: 80%;
   height: auto;
+  margin: auto;
 }
 
 .buttons {
   margin-top: 20px;
+  gap: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons>span {
+  width: fit-content;
+  padding: 5px;
+  font-size: 17px;
+  align-self: center;
+
 }
 
 button {
   padding: 10px 20px;
   margin: 5px;
   cursor: pointer;
+  text-align: center;
 }
 
 .slider {
@@ -147,4 +160,15 @@ span {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+
+/* Resposive */
+@media ( width <= 500px) {
+
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+  /* … */
 }

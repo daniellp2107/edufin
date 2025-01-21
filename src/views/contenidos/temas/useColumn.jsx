@@ -10,8 +10,8 @@ export const useColumn = () => {
   const dispatch = useDispatch();
 
   const handleClick =(record)=>{
-    const {id, nombre, tiempoMaxMinutos} = record;
-    dispatch(startEditarTema({id, nombre, tiempoMaxMinutos}));
+    const {id, nombre, tiempoMaxMinutos, preguntasFinal} = record;
+    dispatch(startEditarTema({id, nombre, tiempoMaxMinutos,preguntasFinal}));
     navigate(`/contenidos/detalles/${id}`);
   };
 
@@ -45,10 +45,10 @@ export const useColumn = () => {
     {
       title: "",
       key: "id",
-      width: "2%",
       align: "center",
       render: (text, record, index) => (
         <Button
+          style={{width:'fit-content'}}
           onClick={()=>handleClick(record) }
           type="primary"
           shape="circle"

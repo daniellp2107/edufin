@@ -6,7 +6,7 @@ export const Formulario = ({form, formValidation,onChangeCheck, onChangeNombre, 
   return (
     <>
       <Row>
-        <Col>
+        <Col sm={24} >
           <InputText
             name="nombre"
             label="Pregunta"

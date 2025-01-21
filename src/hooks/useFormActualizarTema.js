@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  formValidationsNuevoTema,
-} from "../utils/formValidations";
+import { formValidationsNuevoTema } from "../utils/formValidations";
 import { startActualizarTema } from "../store/slices/contenidos/thunks";
 
 export const useFormActualizarTema = (data) => {
@@ -22,9 +20,7 @@ export const useFormActualizarTema = (data) => {
   const handleReset = () => setForm(data);
 
   const handleSubmit = () => {
-    const {id, nombre, tiempoMaxMinutos} = form;
-    console.log("Actualizando temas", {id, nombre, tiempoMaxMinutos});
-    dispatch(startActualizarTema({id, nombre, tiempoMaxMinutos}));
+    dispatch(startActualizarTema(form));
   };
 
   const checkForm = () => {

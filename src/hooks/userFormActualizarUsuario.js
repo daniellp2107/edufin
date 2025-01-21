@@ -30,8 +30,6 @@ export const userFormActualizarUsuario = (usuario) => {
   };
 
   const handleSubmit = () => {
-    console.log('submit');
-    console.log(form);
     dispatch(startActualizarUsuario(form));
   };
 
