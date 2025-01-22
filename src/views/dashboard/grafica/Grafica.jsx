@@ -10,7 +10,7 @@ export const Grafica = () => {
   const { form, setForm, handleSubmit, onChangeDate } = useFormActualizarFecha();
   return (
     <>
-      <Row gutter={[16,8]} justify={'start'} style={{marginBottom:10}} align={'bottom '}>
+      <Row gutter={[10, 10]} justify={'start'} style={{marginBottom:10}} align={'bottom '}>
         <Col sm={24} md={6}>
           <InputDatePicker
             label={"Elige un mes"}
@@ -29,7 +29,7 @@ export const Grafica = () => {
         </Col>
         <Col >
           <Button 
-            
+            style={{top:5}}
             onClick={handleSubmit}
           >
             Actualizar
