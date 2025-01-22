@@ -24,7 +24,7 @@ export const startAgregarUsuario =(body)=>{
       const res = await fetch('post', `${URL_BASE}/api/usuarios`, body);
       if (res.ok) {
         dispatch(startCargaUsuarios());
-        setNotificacion(setNotificacion(creaNotificacion('success', 'Usuario Agregado')));
+        dispatch((setNotificacion(creaNotificacion('success', 'Usuario Agregado'))));
       };
     } catch (error) {
       console.log(error);
@@ -50,10 +50,10 @@ export const startActualizarUsuario =(body)=>{
     try {
       const res = await fetch('put', `${URL_BASE}/api/usuarios`, body);
       if (res.ok) {
+        dispatch((setNotificacion(creaNotificacion('success', 'Usuario Actualizado'))));
         dispatch(startCargaUsuarios());
-        setNotificacion(setNotificacion(creaNotificacion('success', 'Usuario Actualizado')));
       }else{
-        setNotificacion(setNotificacion(creaNotificacion('error', 'Usuario no Actualizado')));
+        dispatch((setNotificacion(creaNotificacion('error', 'Usuario no Actualizado'))));
       };
     } catch (error) {
       console.log(error);
@@ -67,9 +67,9 @@ export const startEliminarUsuario =(body)=>{
       const res = await fetch('delete', `${URL_BASE}/api/usuarios/${body.ususarioID}`);
       if (res.ok) {
         dispatch(startCargaUsuarios());
-        setNotificacion(setNotificacion(creaNotificacion('success', 'Usuario Eliminado')));
+        dispatch((setNotificacion(creaNotificacion('success', 'Usuario Eliminado'))));
       }else{
-        setNotificacion(setNotificacion(creaNotificacion('error', 'Usuario no Eliminado')));
+        dispatch((setNotificacion(creaNotificacion('error', 'Usuario no Eliminado'))));
       };
     } catch (error) {
       console.log(error);

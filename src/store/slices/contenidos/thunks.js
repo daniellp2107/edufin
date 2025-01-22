@@ -120,7 +120,7 @@ export const startEliminarPregunta =(pregunta, temaID)=>{
       const res = await fetch('delete',`${URL_BASE}/api/preguntas/${pregunta.id}`);
       if (res.ok) {
         dispatch(startCargarPreguntas(temaID));
-        dispatch(setNotificacion(creaNotificacion('error', 'Pendiente por eliminar')));
+        dispatch(setNotificacion(creaNotificacion('success', 'Pregunta eliminada')));
       }else{
         dispatch(setNotificacion(creaNotificacion('error', 'No se puedo eliminar pregunta')));
       };

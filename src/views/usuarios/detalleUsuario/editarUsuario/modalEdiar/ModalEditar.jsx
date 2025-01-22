@@ -15,7 +15,7 @@ export const ModalEditar = ({ open, setOpen }) => {
   const {form, setForm,onClickGenPass, onChangeDate, onChangeText, onChangeVal, handleSubmit, handleReset} = userFormActualizarUsuario(usuario);
 
   useEffect(() => {
-    setForm(usuario)
+    setForm({...usuario, confirmPassword:"", password:""});
   }, [usuario]);
   
 

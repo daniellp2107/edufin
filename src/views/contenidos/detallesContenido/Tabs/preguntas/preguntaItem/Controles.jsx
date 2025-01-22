@@ -7,7 +7,6 @@ export const Controles = ({ preguntaActual, eliminarActual }) => {
 
   const confirm = (e) => {
     eliminarActual();
-    message.success("Pregunta eliminada");
   };
 
   const cancel = (e) => {
