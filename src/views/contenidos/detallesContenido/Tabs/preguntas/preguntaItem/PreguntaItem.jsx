@@ -5,9 +5,11 @@ import { Controles } from "./Controles";
 import { ModalEditar } from "./modalEditar/ModalEditar";
 import { useDispatch, useSelector } from "react-redux";
 import { startEliminarPregunta } from "../../../../../../store/slices/contenidos/thunks";
+import { useParams } from "react-router-dom";
 
 export const Pregunta = ({ pregunta }) => {
   const dispatch = useDispatch();
+  const {id:temaID} = useParams();
   const [act, setAct] = useState();
   const [open, setOpen] = useState(false);
   const { preguntas } = useSelector((state) => state.contenidosReducer);
@@ -20,7 +22,7 @@ export const Pregunta = ({ pregunta }) => {
   };
 
   const handleEliminar = () => {
-    dispatch(startEliminarPregunta(pregunta));
+    dispatch(startEliminarPregunta(pregunta, temaID));
   };
 
   return (

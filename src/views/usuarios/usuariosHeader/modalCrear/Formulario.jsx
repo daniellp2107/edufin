@@ -1,7 +1,6 @@
 import { Button, Checkbox, Col, Row } from "antd";
 import { InputText } from "../../../../components/input/InputText";
 import { InputDatePicker } from "../../../../components/input/InputDatePicker";
-import { generatePassword } from "../../../../utils/generatePassword";
 import InputPassword from "../../../../components/input/InputPassword";
 import dayjs from "dayjs";
 
@@ -89,8 +88,7 @@ export const Formulario = ({
             const target = { name: 'esAdmin', value: e.target.checked }
             onChangeVal(target);
           }}
-        >
-          Admin
+        >Admin
         </Checkbox>
         {confirmRol && <p>{confirmRol}</p>}
       </Col >
@@ -103,8 +101,7 @@ export const Formulario = ({
             const target = { name: 'esAlumno', value: e.target.checked }
             onChangeVal(target);
           }}
-        >
-          Alumno
+        >Alumno
         </Checkbox>
       </Col>
     </Row>

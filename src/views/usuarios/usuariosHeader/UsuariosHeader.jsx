@@ -3,7 +3,7 @@ import { Button } from "antd";
 import { ModalCrear } from "./modalCrear/ModalCrear";
 import { PlusCircleOutlined } from "@ant-design/icons";
 
-export const ContenidoHeader = () => {
+export const UsuariosHeader = () => {
   const [open, setOpen] = useState(false);
 
   return (

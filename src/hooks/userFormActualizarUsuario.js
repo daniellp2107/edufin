@@ -5,7 +5,7 @@ import { startActualizarUsuario } from '../store/slices/usuarios/thunks';
 
 export const userFormActualizarUsuario = (usuario) => {
   const dispatch = useDispatch();
-  const [form, setForm] = useState(usuario);
+  const [form, setForm] = useState({...usuario, confirmPassword:'', password:''});
 
   useEffect(() => {
     setForm(form);

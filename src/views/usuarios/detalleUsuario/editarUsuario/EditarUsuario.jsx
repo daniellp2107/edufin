@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { Button, Col, message, Popconfirm, Row } from "antd";
 import { InputText } from "../../../../components/input/InputText";
 import { ModalEditar } from "./modalEdiar/ModalEditar";
+import { startEliminarUsuario } from "../../../../store/slices/usuarios/thunks";
 
 
 export const EditarUsuario = () => {
+  const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const {usuario} = useSelector(state => state.usuariosReducer);
 
-  const handleEliminarTema = () => {
-    message.error('Pendiente por eliminar');
+  const handleEliminarUsuario = () => {
+    dispatch(startEliminarUsuario(usuario));
   };
 
   const handleEliminarCancelar = (e) => {
@@ -66,8 +68,8 @@ export const EditarUsuario = () => {
         <Col >
           <Popconfirm
             title="Eliminar actual"
-            description="¿Estás seguro que quieres eliminar el alumno actual?"
-            onConfirm={handleEliminarTema}
+            description="¿Estás seguro que quieres eliminar el ususario actual?"
+            onConfirm={handleEliminarUsuario}
             onCancel={handleEliminarCancelar}
             okText="Eliminar"
             cancelText="No"

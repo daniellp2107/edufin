@@ -1,25 +1,24 @@
 import { Button, message, Popconfirm } from "antd";
 
-export const Controles = ({
-  preguntaActual,
-  eliminarActual,
-}) => {
+export const Controles = ({ preguntaActual, eliminarActual }) => {
   const onClickEditar = () => {
     preguntaActual();
   };
 
   const confirm = (e) => {
     eliminarActual();
-    message.success('Pregunta eliminada');
+    message.success("Pregunta eliminada");
   };
 
   const cancel = (e) => {
-    message.error('Cancelar');
+    message.error("Cancelar");
   };
 
   return (
     <>
-      <Button type="primary" onClick={() => onClickEditar()}>Editar</Button>
+      <Button type="primary" onClick={() => onClickEditar()}>
+        Editar
+      </Button>
       <Popconfirm
         title="Eliminar pregunta"
         description="¿Estas seguro que quieres eliminar está pregunta?"

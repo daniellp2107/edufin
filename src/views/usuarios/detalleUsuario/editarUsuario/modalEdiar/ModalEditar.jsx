@@ -46,11 +46,19 @@ export const ModalEditar = ({ open, setOpen }) => {
   };
 
   const handleCancel = () => {
+    setConfirmPass(null);
+    setConfirmRol(null);
+    setMessageError(false);
     setOpen(false);
   };
 
   return (
-    <Modal open={open} onCancel={handleCancel} onOk={handleOk}>
+    <Modal 
+      title = 'Actualizar Usuario'
+      open={open} 
+      onCancel={handleCancel} 
+      onOk={handleOk}
+    >
       <Formulario
         form={form}
         formValidation={formValidation}

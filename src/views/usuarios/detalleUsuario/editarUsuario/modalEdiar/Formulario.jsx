@@ -8,7 +8,7 @@ import { colores } from '../../../../../const/colores';
 export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, onChangeText, onChangeVal, messageError, confirmPass, confirmRol}) => {
 
   return (
-    <Row gutter={[16, 8]}>
+    <Row gutter={[10, 10]}>
       <Col md={12} sm={24}>
         <InputText
           name={"nombre"}
@@ -17,7 +17,7 @@ export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, o
           onChange={onChangeText}
           err={formValidation?.nombreValid && messageError}
         />
-        {messageError && <span style={{color:colores.rojo}}>{formValidation.nombreValid}</span>}
+        {messageError && <span style={{color:colores.rojo}}>{formValidation?.nombreValid}</span>}
       </Col>
       <Col md={12} sm={24}>
         <InputText
@@ -27,7 +27,7 @@ export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, o
           onChange={(value) => onChangeText(value)}
           err={formValidation?.emailValid && messageError}
         />
-        {messageError && <span style={{color:colores.rojo}}>{formValidation.emailValid}</span>}
+        {messageError && <span style={{color:colores.rojo}}>{formValidation?.emailValid}</span>}
       </Col>
       <Col md={12} sm={24}>
         <InputPassword
@@ -37,7 +37,7 @@ export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, o
           onChange={(value) => onChangeText(value)}
           err={formValidation?.passwordValid && messageError}
         />
-        {messageError && <span style={{color:colores.rojo}}>{formValidation.passwordValid}</span>}
+        {messageError && <span style={{color:colores.rojo}}>{formValidation?.passwordValid}</span>}
 
       </Col>
       <Col md={12} sm={24}>
@@ -48,7 +48,7 @@ export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, o
           value={form?.confirmPassword}
           err={formValidation?.confirmPasswordValid && messageError}
         />
-        {messageError && <span style={{color:colores.rojo}}>{formValidation.confirmPasswordValid}</span>}
+        {messageError && <span style={{color:colores.rojo}}>{formValidation?.confirmPasswordValid}</span>}
         {confirmPass && <span style={{color:colores.rojo}}>{confirmPass}</span>}
       </Col>
       <Col md={12} sm={24}>
@@ -62,7 +62,7 @@ export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, o
           }}
           err={formValidation?.fechaLimiteValid && messageError}
         />
-        {messageError && <span style={{color:colores.rojo}}>{formValidation.fechaLimiteValid}</span>}
+        {messageError && <span style={{color:colores.rojo}}>{formValidation?.fechaLimiteValid}</span>}
         
       </Col>
       <Col>
@@ -79,8 +79,7 @@ export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, o
             const target = { name: 'esAdmin', value: e.target.checked }
             onChangeVal(target);
           }}
-        >
-          Admin
+        >Admin
         </Checkbox>
         {confirmRol && <p style={{color:colores.rojo}}>{confirmRol}</p>}
       </Col >
@@ -93,8 +92,7 @@ export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, o
             const target = { name: 'esAlumno', value: e.target.checked }
             onChangeVal(target);
           }}
-        >
-          Alumno
+        >Alumno
         </Checkbox>
       </Col>
     </Row>

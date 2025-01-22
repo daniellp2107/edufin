@@ -12,7 +12,6 @@ export const ModalCrear = ({open, setOpen}) => {
   const handleClickOk =()=>{
     if (!isFormValid()) {
       setMessageError(true);
-      console.log(formValidation);
       return;
     };
     if ((form.password !== form.confirmPassword)) {

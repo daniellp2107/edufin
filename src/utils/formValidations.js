@@ -100,8 +100,8 @@ export const formValidationsActualizarUsuario = {
   nombre: [(value) => value.length > 3, "Mínimo 3 caracteres"],
   email: [value => esEmailValido(value), 'Necesito un correo válido'],
   fechaLimite: [value => (dayjs(value) > dayjs()) && dayjs(value).isValid() && (dayjs(value) !== dayjs()), 'Necesito una fecha valida'],
-  password: [value => value?.trim().length > 5 && value?.trim() !== '', 'Mínimo 5 caracteres'],
-  confirmPassword: [value => value?.trim().length > 5 && value?.trim() !== '', 'Verifica tu contraseña'],
+  password: [value => value !== null, 'Datos no validos'],
+  confirmPassword: [value => value !== null, 'Datos no validos'],
   esAlumno: [value => typeof(value)==='boolean', 'Elige una opción'],
   esAdmin: [value => typeof(value)==='boolean', 'Elige una opción'],
 };
