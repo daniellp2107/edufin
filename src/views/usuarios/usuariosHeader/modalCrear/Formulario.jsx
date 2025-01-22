@@ -3,6 +3,7 @@ import { InputText } from "../../../../components/input/InputText";
 import { InputDatePicker } from "../../../../components/input/InputDatePicker";
 import InputPassword from "../../../../components/input/InputPassword";
 import dayjs from "dayjs";
+import { colores } from "../../../../const/colores";
 
 export const Formulario = ({
   confirmPass,
@@ -26,7 +27,7 @@ export const Formulario = ({
           onChange={onChangeText}
           err={formValidation?.nombreValid && messageError}
         />
-        {messageError && <p>{formValidation.nombreValid}</p>}
+        {messageError && <span style={{color:colores.rojo}}>{formValidation.nombreValid}</span>}
       </Col>
       <Col md={12} sm={24}>
         <InputText
@@ -36,7 +37,7 @@ export const Formulario = ({
           onChange={(value) => onChangeText(value)}
           err={formValidation?.emailValid && messageError}
         />
-        {messageError && <p>{formValidation.emailValid}</p>}
+        {messageError && <span style={{color:colores.rojo}}>{formValidation.emailValid}</span>}
       </Col>
       <Col md={12} sm={24}>
         <InputPassword
@@ -46,7 +47,7 @@ export const Formulario = ({
           onChange={(value) => onChangeText(value)}
           err={formValidation?.passwordValid && messageError}
         />
-        {messageError && <span>{formValidation.passwordValid}</span>}
+        {messageError && <span style={{color:colores.rojo}}>{formValidation.passwordValid}</span>}
 
       </Col>
       <Col md={12} sm={24}>
@@ -57,21 +58,21 @@ export const Formulario = ({
           value={form.confirmPassword}
           err={formValidation?.confirmPasswordValid && messageError}
         />
-        {messageError && <span>{formValidation.confirmPasswordValid}</span>}
-        {confirmPass && <span >{confirmPass}</span>}
+        {messageError && <span style={{color:colores.rojo}}>{formValidation.confirmPasswordValid}</span>}
+        {confirmPass && <span style={{color:colores.rojo}} >{confirmPass}</span>}
       </Col>
       <Col md={12} sm={24}>
         <InputDatePicker
           label={"Fecha Límite"}
           name={"fechaLimite"}
-          value={dayjs( form.fechaLimite ) }
+          value={form.fechaLimite && dayjs( form.fechaLimite ) }
           onChange={(value, value2) => {
             let target = { name: "fechaLimite", value: value2 };
             onChangeDate(target);
           }}
           err={formValidation?.fechaLimiteValid && messageError}
         />
-        {messageError && <p>{formValidation.fechaLimiteValid}</p>}
+        {messageError && <span style={{color:colores.rojo}}>{formValidation.fechaLimiteValid}</span>}
         
       </Col>
       <Col>
@@ -90,7 +91,7 @@ export const Formulario = ({
           }}
         >Admin
         </Checkbox>
-        {confirmRol && <p>{confirmRol}</p>}
+        {confirmRol && <p style={{color:colores.rojo}}>{confirmRol}</p>}
       </Col >
       <Col >
         <Checkbox
