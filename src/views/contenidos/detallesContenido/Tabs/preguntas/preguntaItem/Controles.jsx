@@ -1,6 +1,7 @@
 import { Button, message, Popconfirm } from "antd";
+import { ModalEditar } from "./modalEditar/ModalEditar";
 
-export const Controles = ({ preguntaActual, eliminarActual }) => {
+export const Controles = ({ preguntaActual, eliminarActual, open, setOpen, act }) => {
   const onClickEditar = () => {
     preguntaActual();
   };
@@ -28,6 +29,7 @@ export const Controles = ({ preguntaActual, eliminarActual }) => {
       >
         <Button danger>Eliminar</Button>
       </Popconfirm>
+      <ModalEditar open={open} setOpen={setOpen} pregunta={act} />
     </>
   );
 };

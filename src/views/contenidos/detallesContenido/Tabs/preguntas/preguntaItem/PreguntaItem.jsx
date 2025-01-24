@@ -46,6 +46,7 @@ export const Pregunta = ({ pregunta }) => {
             setOpen={setOpen}
             preguntaActual={handleActual}
             eliminarActual={handleEliminar}
+            act = {act}
           />
         }
       >
@@ -57,7 +58,7 @@ export const Pregunta = ({ pregunta }) => {
           </>
         )}
       </Card>
-      <ModalEditar open={open} setOpen={setOpen} pregunta={act} />
+
     </>
   );
 };
