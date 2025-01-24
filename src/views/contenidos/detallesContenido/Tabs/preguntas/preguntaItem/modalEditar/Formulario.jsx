@@ -17,7 +17,7 @@ export const Formulario = ({form, formValidation,onChangeCheck, onChangeNombre, 
           {messageError && <p style={{fontSize:12, color:colores.error}}>{formValidation?.nombreValid}</p>}
         </Col>
       </Row>
-      {form?.respuestasFull.map((r, i) => {
+      {form?.respuestas.map((r, i) => {
         const label = `Respuesta ${i + 1}`;
         return (
           <Row key={i}>
@@ -45,7 +45,7 @@ export const Formulario = ({form, formValidation,onChangeCheck, onChangeNombre, 
           
         );
       })}
-      {messageError && <p style={{fontSize:12, color:colores.error}}>{formValidation?.respuestasFullValid}</p>}
+      {messageError && <p style={{fontSize:12, color:colores.error}}>{formValidation?.respuestasValid}</p>}
     </>
   );
 };

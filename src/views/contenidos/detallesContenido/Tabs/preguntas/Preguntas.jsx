@@ -8,6 +8,7 @@ export const Preguntas = () => {
   const dispatch = useDispatch()
   const {tema} = useSelector(state => state.contenidosReducer);
   useEffect(() => {
+
     dispatch(startCargarPreguntas(tema.id));
   }, []);
   

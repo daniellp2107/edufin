@@ -12,8 +12,9 @@ export const Pregunta = ({ pregunta }) => {
   const {id:temaID} = useParams();
   const [act, setAct] = useState();
   const [open, setOpen] = useState(false);
+  const { loading } = useSelector((state) => state.cargandoReducer);
   const { preguntas } = useSelector((state) => state.contenidosReducer);
-  const { id, nombre, respuestasFull } = pregunta;
+  const { id, nombre, respuestas } = pregunta;
 
   const handleActual = () => {
     const actual = preguntas.find((t) => t.id === id);
@@ -25,6 +26,7 @@ export const Pregunta = ({ pregunta }) => {
     dispatch(startEliminarPregunta(pregunta, temaID));
   };
 
+  if (loading) return <p>Cargando...</p>;
   return (
     <>
       <Card
@@ -47,10 +49,10 @@ export const Pregunta = ({ pregunta }) => {
           />
         }
       >
-        {respuestasFull.length > 0 && (
+        {respuestas?.length > 0 && (
           <>
-            {respuestasFull.map((res, i) => (
-              <Respuestas key={i} respuesta={res} />
+            {respuestas?.map((res, i) => (
+              <Respuestas key={res.id} respuesta={res} />
             ))}
           </>
         )}

@@ -1,9 +1,10 @@
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { Button } from 'antd'
+import { Button, Switch } from 'antd'
 import dayjs from 'dayjs'
 import { CheckCircleOutlined, CloseCircleOutlined, EyeOutlined,  } from '@ant-design/icons'
-import { startSetUsuarioActual } from '../../../store/slices/usuarios/thunks'
+import { startActualizarUsuario, startSetUsuarioActual } from '../../../store/slices/usuarios/thunks'
+import { crearDatosActualizar } from '../../../utils/crearUsuarioActualizar'
 
 export const useColumns = () => {
   const dispatch = useDispatch();
@@ -81,18 +82,34 @@ export const useColumns = () => {
       },
     },
     {
+      title: 'Activo',
+      dataIndex: 'estaActivo',
+      key: 'estaActivo',
+      width: "2%",
+      align: "center",
+      render:(text, record, index)=>{
+        // console.log(text, record, index)
+        return <Switch
+                  size='small'
+                  value={record.estaActivo}
+                  onChange={(value) => {
+                    let target = { name: 'estaActivo', value: value }
+                    dispatch(startActualizarUsuario(crearDatosActualizar(target, record)));
+                  }}
+                />
+      },
+    },
+    {
       title: "",
       key: "id",
       width: "2%",
       align: "center",
       render: (text, record, index) => (
-        <Button
+        <span 
+          style={{cursor:'pointer'}} 
           onClick={()=>handleClick(record.usuarioID) }
-          type="primary"
-          shape="circle"
-          icon={<EyeOutlined />}
-          size="small"
-        />
+        ><EyeOutlined />
+        </span>
       ),
     },
 

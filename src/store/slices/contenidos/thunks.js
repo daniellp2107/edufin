@@ -4,6 +4,7 @@ import { URL_BASE } from "../../../const/url";
 import { storeAgregarLamina, storeBuscarPregunta, storeLamina, storeLaminaActual, storeLaminas, storePreguntas, storeTema, storeTemas } from "./contenidosSlice";
 import { setNotificacion } from '../notificacion/notificacionSlice';
 import { creaNotificacion } from '../../../utils/creaNotificacion';
+import { storeLoading } from '../cargandoPreguntas/cargandoSlice';
 
 
 export const startLoadTemas = ()=>{
@@ -75,10 +76,12 @@ export const startEliminarTema =(id)=>{
 export const startCargarPreguntas =(id)=>{
   return async dispatch =>{
     try {
+      dispatch(storeLoading(true));
       const res = await fetch('get', `${URL_BASE}/api/preguntas/${id}`);
       if (res.ok) {
         dispatch(storePreguntas(res.data));
       };
+      dispatch(storeLoading(false));
     } catch (error) {
       console.log(error);
     };

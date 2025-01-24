@@ -14,12 +14,12 @@ export const useFormActualizarPregunta = (pregunta) => {
 
   const onChangeRespuesta = ({ target }, index) => {
     setForm((state) => {
-      const newRespuestas = [...state.respuestasFull];
+      const newRespuestas = [...state.respuestas];
       newRespuestas[index] = {
         ...newRespuestas[index],
         [target.name]: target.value,
       };
-      return { ...state, respuestasFull: newRespuestas };
+      return { ...state, respuestas: newRespuestas };
     });
   };
 
@@ -29,12 +29,12 @@ export const useFormActualizarPregunta = (pregunta) => {
 
   const onChangeCheck = (target, index) => {
     setForm((state) => {
-      const newRespuestas = [...state.respuestasFull];
+      const newRespuestas = [...state.respuestas];
       newRespuestas[index] = {
         ...newRespuestas[index],
         [target.name]: target.value,
       };
-      return { ...state, respuestasFull: newRespuestas };
+      return { ...state, respuestas: newRespuestas };
     });
   };
 
@@ -43,7 +43,7 @@ export const useFormActualizarPregunta = (pregunta) => {
   const handleSubmit = () => {
     const datos = {
       ...form,
-      respuestas:form.respuestasFull
+      respuestas:form.respuestas
     };
     dispatch(startEditarPregunta(datos));
   };

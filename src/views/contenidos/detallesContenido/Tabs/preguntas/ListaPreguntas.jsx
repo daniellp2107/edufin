@@ -3,14 +3,10 @@ import { useSelector } from "react-redux";
 import { Pregunta } from "./preguntaItem/PreguntaItem";
 
 export const ListaPreguntas = () => {
-  const { preguntas, buscarPregunta } = useSelector(
-    (state) => state.contenidosReducer
-  );
+  const { preguntas, buscarPregunta } = useSelector((state) => state.contenidosReducer);
 
   if (preguntas.length === 0) return <p>Sin preguntas</p>;
-  if (buscarPregunta === "")
-    return preguntas.map((p, i) => <Pregunta pregunta={p} key={i} />);
-
+  if (buscarPregunta === "") return preguntas.map((p, i) => <Pregunta pregunta={p} key={i} />);
   return (
     <>
       {preguntas

@@ -1,7 +1,6 @@
-import { Button } from "antd";
-import { EyeOutlined } from "@ant-design/icons"
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { EyeOutlined } from "@ant-design/icons"
 import { startEditarTema } from "../../../store/slices/contenidos/thunks";
 
 
@@ -47,14 +46,11 @@ export const useColumn = () => {
       key: "id",
       align: "center",
       render: (text, record, index) => (
-        <Button
-          style={{width:'fit-content'}}
+        <span 
+          style={{cursor:'pointer'}} 
           onClick={()=>handleClick(record) }
-          type="primary"
-          shape="circle"
-          icon={<EyeOutlined />}
-          size="small"
-        />
+        ><EyeOutlined />
+        </span>
       ),
     },
   ]

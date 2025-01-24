@@ -12,8 +12,7 @@ export const UsuariosHeader = () => {
         style={{ width: 'fit-content', marginBottom: 5 }}
         type="primary"
         onClick={() => setOpen(true)}
-      >
-        Nuevo Usuario
+      >Nuevo Usuario
         <PlusCircleOutlined />
       </Button>
       <ModalCrear open={open} setOpen={setOpen} />

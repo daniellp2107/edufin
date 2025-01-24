@@ -1,12 +1,21 @@
-import dayjs from 'dayjs';
-import { Button, Checkbox, Col, Row } from 'antd';
-import { InputText } from '../../../../../components/input/InputText';
-import InputPassword from '../../../../../components/input/InputPassword';
-import { InputDatePicker } from '../../../../../components/input/InputDatePicker';
-import { colores } from '../../../../../const/colores';
+import dayjs from "dayjs";
+import { Button, Checkbox, Col, Row, Switch } from "antd";
+import { InputText } from "../../../../../components/input/InputText";
+import InputPassword from "../../../../../components/input/InputPassword";
+import { InputDatePicker } from "../../../../../components/input/InputDatePicker";
+import { colores } from "../../../../../const/colores";
 
-export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, onChangeText, onChangeVal, messageError, confirmPass, confirmRol}) => {
-
+export const Formulario = ({
+  form,
+  formValidation,
+  onClickGenPass,
+  onChangeDate,
+  onChangeText,
+  onChangeVal,
+  messageError,
+  confirmPass,
+  confirmRol,
+}) => {
   return (
     <Row gutter={[10, 10]}>
       <Col md={12} sm={24}>
@@ -17,7 +26,11 @@ export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, o
           onChange={onChangeText}
           err={formValidation?.nombreValid && messageError}
         />
-        {messageError && <span style={{color:colores.rojo}}>{formValidation?.nombreValid}</span>}
+        {messageError && (
+          <span style={{ color: colores.rojo }}>
+            {formValidation?.nombreValid}
+          </span>
+        )}
       </Col>
       <Col md={12} sm={24}>
         <InputText
@@ -27,7 +40,11 @@ export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, o
           onChange={(value) => onChangeText(value)}
           err={formValidation?.emailValid && messageError}
         />
-        {messageError && <span style={{color:colores.rojo}}>{formValidation?.emailValid}</span>}
+        {messageError && (
+          <span style={{ color: colores.rojo }}>
+            {formValidation?.emailValid}
+          </span>
+        )}
       </Col>
       <Col md={12} sm={24}>
         <InputPassword
@@ -37,8 +54,11 @@ export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, o
           onChange={(value) => onChangeText(value)}
           err={formValidation?.passwordValid && messageError}
         />
-        {messageError && <span style={{color:colores.rojo}}>{formValidation?.passwordValid}</span>}
-
+        {messageError && (
+          <span style={{ color: colores.rojo }}>
+            {formValidation?.passwordValid}
+          </span>
+        )}
       </Col>
       <Col md={12} sm={24}>
         <InputPassword
@@ -48,8 +68,14 @@ export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, o
           value={form?.confirmPassword}
           err={formValidation?.confirmPasswordValid && messageError}
         />
-        {messageError && <span style={{color:colores.rojo}}>{formValidation?.confirmPasswordValid}</span>}
-        {confirmPass && <span style={{color:colores.rojo}}>{confirmPass}</span>}
+        {messageError && (
+          <span style={{ color: colores.rojo }}>
+            {formValidation?.confirmPasswordValid}
+          </span>
+        )}
+        {confirmPass && (
+          <span style={{ color: colores.rojo }}>{confirmPass}</span>
+        )}
       </Col>
       <Col md={12} sm={24}>
         <InputDatePicker
@@ -62,39 +88,59 @@ export const Formulario = ({form, formValidation,onClickGenPass, onChangeDate, o
           }}
           err={formValidation?.fechaLimiteValid && messageError}
         />
-        {messageError && <span style={{color:colores.rojo}}>{formValidation?.fechaLimiteValid}</span>}
-        
+        {messageError && (
+          <span style={{ color: colores.rojo }}>
+            {formValidation?.fechaLimiteValid}
+          </span>
+        )}
       </Col>
       <Col>
         <Button style={{ marginTop: 22 }} onClick={() => onClickGenPass()}>
           generar password
         </Button>
       </Col>
-      <Col >
+      <Col style={{display:'flex', gap:5, marginTop:10, alignItems:'center'}}>
         <Checkbox
           name="esAdmin"
           checked={form.esAdmin}
-          label='Admin'
+          label="Admin"
           onChange={(e) => {
-            const target = { name: 'esAdmin', value: e.target.checked }
+            const target = { name: "esAdmin", value: e.target.checked };
             onChangeVal(target);
           }}
-        >Admin
+        >
+          Admin
         </Checkbox>
-        {confirmRol && <p style={{color:colores.rojo}}>{confirmRol}</p>}
-      </Col >
-      <Col >
         <Checkbox
           name="esAlumno"
           checked={form.esAlumno}
-          label='Alumno'
+          label="Alumno"
           onChange={(e) => {
-            const target = { name: 'esAlumno', value: e.target.checked }
+            const target = { name: "esAlumno", value: e.target.checked };
             onChangeVal(target);
           }}
-        >Alumno
+        >
+          Alumno
         </Checkbox>
+        {confirmRol && <p style={{ color: colores.rojo }}>{confirmRol}</p>}
+      </Col>
+      <Col style={{ display: "flex", gap: 5, marginTop: 10, alignItems: "center" }}>
+        <label>Inactivo</label>
+        <Switch
+          defaultChecked
+          onChange={(value) => {
+            let target = { name: "estaActivo", value: value };
+            onChangeVal(target);
+          }}
+          value={form.estaActivo}
+        />
+        <label>Activo</label>
+        {messageError && (
+          <span style={{ fontSize: 12 }}>
+            {formValidation?.estaActivoValid}
+          </span>
+        )}
       </Col>
     </Row>
-  )
-}
+  );
+};

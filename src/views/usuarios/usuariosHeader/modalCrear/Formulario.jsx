@@ -77,7 +77,7 @@ export const Formulario = ({
       </Col>
       <Col>
         <Button style={{ marginTop: 22 }} onClick={() => onClickGenPass()}>
-          generar password
+          Generar password
         </Button>
       </Col>
       <Col >

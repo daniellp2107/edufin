@@ -71,7 +71,7 @@ export const formValidationsEditarPregunta = {
       value.length >= 5,
     "Mínimo 5 caracteres",
   ],
-  respuestasFull: [
+  respuestasl: [
     (respuestas) => {
       const nombresVacios = respuestas.filter(respuesta => respuesta.nombre !== "").length;
       const hayRespuestaCorrecta = respuestas.filter(respuesta => respuesta.esCorrecta === true).length;
