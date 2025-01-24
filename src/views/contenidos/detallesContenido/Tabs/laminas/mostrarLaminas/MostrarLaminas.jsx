@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { colores } from "../../../../../../const/colores";
 import { URL_BASE } from "../../../../../../const/url";
 import { startSetLaminaActual } from "../../../../../../store/slices/contenidos/thunks";
 

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Card } from "antd";
 import { Respuestas } from "./Respuestas";
 import { Controles } from "./Controles";
-import { ModalEditar } from "./modalEditar/ModalEditar";
 import { useDispatch, useSelector } from "react-redux";
 import { startEliminarPregunta } from "../../../../../../store/slices/contenidos/thunks";
 import { useParams } from "react-router-dom";
@@ -12,7 +11,6 @@ export const Pregunta = ({ pregunta }) => {
   const {id:temaID} = useParams();
   const [act, setAct] = useState();
   const [open, setOpen] = useState(false);
-  const { loading } = useSelector((state) => state.cargandoReducer);
   const { preguntas } = useSelector((state) => state.contenidosReducer);
   const { id, nombre, respuestas } = pregunta;
 
@@ -26,7 +24,6 @@ export const Pregunta = ({ pregunta }) => {
     dispatch(startEliminarPregunta(pregunta, temaID));
   };
 
-  if (loading) return <p> </p>;
   return (
       <Card
         style={{marginBottom:10}}

@@ -1,5 +1,5 @@
 import { Modal } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Formulario } from "./Formulario";
 import { useFormActualizarPregunta } from "../../../../../../../hooks/useFormActualizarPregunta";
 import {
@@ -32,7 +32,6 @@ export const ModalEditar = ({ open, setOpen, pregunta }) => {
     setMessageError(false);
     setOpen(false);
   };
-console.log(form);
   return (
     <Modal
       title={"Editar Pregunta"}
