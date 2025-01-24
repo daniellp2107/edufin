@@ -32,7 +32,7 @@ export const ModalEditar = ({ open, setOpen, pregunta }) => {
     setMessageError(false);
     setOpen(false);
   };
-
+console.log(form);
   return (
     <Modal
       title={"Editar Pregunta"}

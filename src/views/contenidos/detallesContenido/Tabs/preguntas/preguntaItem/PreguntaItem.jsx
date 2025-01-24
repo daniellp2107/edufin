@@ -26,7 +26,7 @@ export const Pregunta = ({ pregunta }) => {
     dispatch(startEliminarPregunta(pregunta, temaID));
   };
 
-  if (loading) return <p>Cargando...</p>;
+  if (loading) return <p> </p>;
   return (
     <>
       <Card
