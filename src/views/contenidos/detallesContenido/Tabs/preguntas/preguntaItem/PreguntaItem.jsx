@@ -28,8 +28,8 @@ export const Pregunta = ({ pregunta }) => {
 
   if (loading) return <p> </p>;
   return (
-    <>
       <Card
+        style={{marginBottom:10}}
         styles={{
           title: {
             height: "auto",
@@ -52,13 +52,11 @@ export const Pregunta = ({ pregunta }) => {
       >
         {respuestas?.length > 0 && (
           <>
-            {respuestas?.map((res, i) => (
+            {respuestas?.map((res) => (
               <Respuestas key={res.id} respuesta={res} />
             ))}
           </>
         )}
       </Card>
-
-    </>
   );
 };
