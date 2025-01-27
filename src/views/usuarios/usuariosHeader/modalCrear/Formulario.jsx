@@ -38,6 +38,7 @@ export const Formulario = ({
           err={formValidation?.emailValid && messageError}
         />
         {messageError && <span style={{color:colores.rojo}}>{formValidation.emailValid}</span>}
+        
       </Col>
       <Col md={12} sm={24}>
         <InputPassword

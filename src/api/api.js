@@ -23,8 +23,9 @@ export async function fetch(method, url, body) {
     });
     return { ok: true, data };
   } catch (e) {
-    console.log(e);
-    return { ok: false, data };
+    console.log({ e });
+    if (e.response) return { ok: false, response: e.response };
+    else return { ok: false, data };
   }
 }
 
@@ -46,7 +47,7 @@ export async function fetchSinToken(method, url, body) {
   } catch (e) {
     console.log({ e });
     if (e.response) return { ok: false, response: e.response };
-    else return { ok: false };
+    else return { ok: false, data };
   }
 }
 

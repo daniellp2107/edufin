@@ -6,7 +6,7 @@ export const usuariosSlice = createSlice({
     usuarios:[],
     usuario:{},
     actividades:[],
-    examenesFinal:[]
+    examenesFinal:[],
   },
   reducers: {
     storeUsuarios: (state, {payload})=>{
@@ -16,7 +16,7 @@ export const usuariosSlice = createSlice({
       state.usuario = payload.usuario;
       state.actividades = payload.actividades;
       state.examenesFinal = payload.examenesFinal;
-    },
+    },    
   },
 });
 

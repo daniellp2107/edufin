@@ -24,8 +24,9 @@ export const startAgregarUsuario =(body)=>{
       const res = await fetch('post', `${URL_BASE}/api/usuarios`, body);
       if (res.ok) {
         dispatch(startCargaUsuarios());
-        dispatch((setNotificacion(creaNotificacion('success', 'Usuario Agregado'))));
-      };
+      }else{
+        dispatch((setNotificacion(creaNotificacion('error', res.response.data))));
+      }
     } catch (error) {
       console.log(error);
     };

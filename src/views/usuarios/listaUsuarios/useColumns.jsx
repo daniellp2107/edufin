@@ -54,7 +54,7 @@ export const useColumns = () => {
       width: "2%",
       align: "center",
       render: (text, record, index) => {
-        const {esAdmin,esAlumnio} = record;
+        const {esAlumnio} = record;
         return <span> 
         {
           esAlumnio 
@@ -67,11 +67,10 @@ export const useColumns = () => {
     {
       title: "Admin",
       dataIndex: "esAdmin",
-      key: "usuarioID",
       width: "2%",
       align: "center",
       render: (text, record, index) => {
-        const {esAdmin,esAlumno} = record;
+        const {esAdmin} = record;
         return <span> 
         {
           esAdmin 
@@ -84,7 +83,6 @@ export const useColumns = () => {
     {
       title: 'Activo',
       dataIndex: 'estaActivo',
-      key: 'estaActivo',
       width: "2%",
       align: "center",
       render:(text, record, index)=>{
